@@ -14,6 +14,17 @@ config/name="GICSubmission"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=800
+window/size/viewport_height=600
+window/size/initial_position_type=4
+window/size/resizable=false
+
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 Right={

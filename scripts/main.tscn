@@ -1,41 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://dirtnhoy8lt7t"]
+[gd_scene load_steps=4 format=3 uid="uid://dirtnhoy8lt7t"]
 
+[ext_resource type="PackedScene" uid="uid://dfwrtg20nm80v" path="res://scenes/crate.tscn" id="1_0aq6d"]
+[ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="1_irwmq"]
 [ext_resource type="PackedScene" uid="uid://bkge6ci8anka" path="res://scripts/character.tscn" id="1_q753v"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q753v"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_0aq6d"]
-sky_material = SubResource("ProceduralSkyMaterial_q753v")
-
-[sub_resource type="Environment" id="Environment_irwmq"]
-background_mode = 2
-sky = SubResource("Sky_0aq6d")
-tonemap_mode = 2
-
 [node name="Main" type="Node3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_irwmq")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-shadow_enabled = true
 
 [node name="Level" type="Node3D" parent="."]
 
 [node name="Prototype" type="Node3D" parent="Level"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Level/Prototype"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0270996)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.88647, 0, 0.0270996)
 use_collision = true
-size = Vector3(11.7432, 0.418213, 2.77783)
+size = Vector3(17.5161, 0.418213, 2.77783)
+material = ExtResource("1_irwmq")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.70731, 7.3208)
+[node name="Crate" parent="Level/Prototype" instance=ExtResource("1_0aq6d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.616, 1.175, 0)
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 15.0
+physics_material_override = null
 
 [node name="Character" parent="." instance=ExtResource("1_q753v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22327, 0)
 SPEED = 400
 JUMPSPEED = 850
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.87664, 15)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="Level/Prototype/Crate" method="_on_timer_timeout"]

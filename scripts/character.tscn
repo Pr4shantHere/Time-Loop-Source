@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkge6ci8anka"]
+[gd_scene load_steps=7 format=3 uid="uid://bkge6ci8anka"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bhy5bq5oyhrlv" path="res://nofriction.tres" id="1_18etf"]
 [ext_resource type="Script" uid="uid://diq4lfhlewq6d" path="res://scripts/character.gd" id="1_oqwy7"]
+[ext_resource type="Texture2D" uid="uid://dfujlsnamjvcu" path="res://BEST COLOR PALETTE (Blurred).png" id="3_8cgb6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oqwy7"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbuml"]
-albedo_color = Color(0.670564, 0.222317, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x1pyt"]
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("3_8cgb6")
+emission_enabled = true
+emission_texture = ExtResource("3_8cgb6")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_18etf"]
 
@@ -21,7 +25,7 @@ script = ExtResource("1_oqwy7")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_oqwy7")
-surface_material_override/0 = SubResource("StandardMaterial3D_cbuml")
+surface_material_override/0 = SubResource("StandardMaterial3D_x1pyt")
 
 [node name="Col" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_18etf")
