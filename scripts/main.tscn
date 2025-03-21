@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dirtnhoy8lt7t"]
+[gd_scene load_steps=6 format=3 uid="uid://dirtnhoy8lt7t"]
 
 [ext_resource type="PackedScene" uid="uid://dfwrtg20nm80v" path="res://scenes/crate.tscn" id="1_0aq6d"]
 [ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="1_irwmq"]
 [ext_resource type="PackedScene" uid="uid://bkge6ci8anka" path="res://scripts/character.tscn" id="1_q753v"]
+[ext_resource type="PackedScene" uid="uid://c5vdidva7u6d1" path="res://scenes/camera.tscn" id="4_hakmx"]
+[ext_resource type="Script" uid="uid://b6srrjmtfmesa" path="res://scripts/camfollow.gd" id="5_0nr8p"]
 
 [node name="Main" type="Node3D"]
 
@@ -25,13 +27,32 @@ axis_lock_angular_z = true
 mass = 15.0
 physics_material_override = null
 
+[node name="Crate2" parent="Level/Prototype" instance=ExtResource("1_0aq6d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.92288, 1.175, 0)
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 15.0
+physics_material_override = null
+
+[node name="Crate3" parent="Level/Prototype" instance=ExtResource("1_0aq6d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.92288, 3.8035, 0)
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 15.0
+physics_material_override = null
+
 [node name="Character" parent="." instance=ExtResource("1_q753v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22327, 0)
 SPEED = 400
 JUMPSPEED = 850
+COYOTETIMER = 0.02
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.87664, 15)
+[node name="Camera" parent="." instance=ExtResource("4_hakmx")]
+script = ExtResource("5_0nr8p")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0

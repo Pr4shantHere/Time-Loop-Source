@@ -2,16 +2,19 @@ extends RigidBody3D
 
 @export var SPEED = 300
 @export var JUMPSPEED = 500
+@export var COYOTETIMER = 0.3
 
 var dir : int = 0
 var canJump : bool
 var jumpInputCheck : bool #for the jump buffering
-var isGrounded
+var isGrounded : bool
+var jumpCount : int
+var canCoyoteJump : bool
 
 func _ready() -> void:
-	isGrounded = true
+	jumpCount = 0
 	dontpush()
-	
+	$CoyoteTimer.wait_time = COYOTETIMER
 
 func _physics_process(delta: float) -> void:
 	var inputaxis = Input.get_axis("Left","Right")
@@ -42,11 +45,11 @@ func _physics_process(delta: float) -> void:
 	
 	linear_velocity.x = SPEED * dir * delta
 	
-	if canJump && isGrounded:
+	if canJump && isGrounded or canJump && canCoyoteJump:
 		Jump(delta)
-		canJump = false
 		
 	if $"Ground Check".is_colliding():
+		jumpCount = 0
 		isGrounded = true
 	else:
 		isGrounded = false
@@ -67,19 +70,23 @@ func _physics_process(delta: float) -> void:
 		push()
 	else:
 		dontpush()
-
+	
+	if round(linear_velocity).y < 0 && jumpCount == 0:
+		canCoyoteJump = true
+		$CoyoteTimer.start()
+		
 
 func _input(event: InputEvent) -> void:
-	if jumpInputCheck:
+	if jumpInputCheck == true or canCoyoteJump == true:
 		if event.is_action_pressed("Jump"):
-			canJump = true
-	else:
-		canJump = false
+			canJump = true 
 
 
 func Jump(delta):
+	jumpCount = 1 
+	canJump = false
 	linear_velocity.y = JUMPSPEED * delta
-	
+
 
 func push():
 	# Hide the animated arms
@@ -105,3 +112,7 @@ func dontpush():
 	
 	# Hide the PUSH arms
 	get_child(3).get_child(2).visible = false
+
+
+func _on_coyote_timer_timeout() -> void:
+	canCoyoteJump = false
