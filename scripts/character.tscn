@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkge6ci8anka"]
+[gd_scene load_steps=8 format=3 uid="uid://bkge6ci8anka"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bhy5bq5oyhrlv" path="res://nofriction.tres" id="1_18etf"]
 [ext_resource type="Script" uid="uid://diq4lfhlewq6d" path="res://scripts/character.gd" id="1_oqwy7"]
 [ext_resource type="Texture2D" uid="uid://dfujlsnamjvcu" path="res://BEST COLOR PALETTE (Blurred).png" id="3_8cgb6"]
+[ext_resource type="PackedScene" uid="uid://krf08fgiys7u" path="res://assets/Character/GIC Player.glb" id="4_x1pyt"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oqwy7"]
 
@@ -24,6 +25,7 @@ lock_rotation = true
 script = ExtResource("1_oqwy7")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_oqwy7")
 surface_material_override/0 = SubResource("StandardMaterial3D_x1pyt")
 
@@ -32,3 +34,6 @@ shape = SubResource("CapsuleShape3D_18etf")
 
 [node name="Ground Check" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0920087, 0)
+
+[node name="GIC Player" parent="." instance=ExtResource("4_x1pyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

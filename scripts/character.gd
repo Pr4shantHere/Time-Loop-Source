@@ -16,10 +16,13 @@ func _physics_process(delta: float) -> void:
 	
 	if inputaxis > 0:
 		dir = 1
+		rotation.y = deg_to_rad(90)#lerpf(rotation.y, 90, 12)
 	elif inputaxis < 0:
 		dir = -1
+		rotation.y = deg_to_rad(-90)#lerpf(rotation.y, -90, 12)
 	else:
 		dir = 0
+		rotation.y = 0
 	
 	linear_velocity.x = SPEED * dir * delta
 	
