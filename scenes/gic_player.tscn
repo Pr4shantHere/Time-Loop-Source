@@ -1,15 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://beos131p327ne"]
+[gd_scene load_steps=3 format=3 uid="uid://beos131p327ne"]
 
 [ext_resource type="PackedScene" uid="uid://krf08fgiys7u" path="res://assets/Character/GIC Player.glb" id="1_rf76t"]
+[ext_resource type="PackedScene" uid="uid://dvppkjw2rclrm" path="res://assets/Character/GIC PUSH ARMS.glb" id="2_kwdry"]
 
 [node name="GIC Player" instance=ExtResource("1_rf76t")]
 
 [node name="Skeleton3D" parent="RIG" index="0"]
+bones/0/position = Vector3(0, -0.104926, 0)
 bones/1/position = Vector3(0.739742, 1.173, 1.29864e-07)
-bones/1/rotation = Quaternion(0.860868, 0.393989, -0.292786, 0.133998)
+bones/1/rotation = Quaternion(0.849945, 0.417031, -0.289071, 0.141835)
 bones/2/position = Vector3(-0.739742, 1.173, 1.29864e-07)
-bones/2/rotation = Quaternion(0.860868, -0.393989, 0.292786, 0.133998)
-bones/3/position = Vector3(0, 1.55519, 0)
+bones/2/rotation = Quaternion(0.849945, -0.417031, 0.289071, 0.141835)
+bones/3/position = Vector3(0, 1.58828, 0)
 bones/4/position = Vector3(0.338202, -0.304268, -1.75898e-08)
 bones/4/rotation = Quaternion(0.94645, 0.0235005, -0.321893, 0.0079925)
 bones/5/position = Vector3(-0.338202, -0.304268, -1.75898e-08)
@@ -18,3 +20,7 @@ bones/5/rotation = Quaternion(0.94645, -0.0235005, 0.321893, 0.0079925)
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "IDLE"
 speed_scale = 4.5
+
+[node name="GIC PUSH ARMS" parent="." index="2" instance=ExtResource("2_kwdry")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1338)
+visible = false

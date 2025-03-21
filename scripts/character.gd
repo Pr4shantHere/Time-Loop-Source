@@ -10,10 +10,11 @@ var isGrounded
 
 func _ready() -> void:
 	isGrounded = true
+	dontpush()
 	
+
 func _physics_process(delta: float) -> void:
 	var inputaxis = Input.get_axis("Left","Right")
-	var dir
 	
 	if inputaxis > 0:
 		dir = 1
@@ -61,20 +62,46 @@ func _physics_process(delta: float) -> void:
 		jumpInputCheck = true
 	else:
 		jumpInputCheck = false
+		
+	if $CollisionCheck.is_colliding() && dir != 0:
+		push()
+	else:
+		dontpush()
+
 
 func _input(event: InputEvent) -> void:
 	if jumpInputCheck:
 		if event.is_action_pressed("Jump"):
 			canJump = true
 	else:
-		canJump = false 
-			#if isGrounded:
-				#canJump = true
-			#else:
-				#canJump = false 
-		#if event.is_action_released("Jump"):
-			#canJump = false
+		canJump = false
+
 
 func Jump(delta):
 	linear_velocity.y = JUMPSPEED * delta
 	
+
+func push():
+	# Hide the animated arms
+	# Player Model -> RIG -> Skeleton3D -> the arms
+	
+	get_child(3).get_child(0).get_child(0).get_child(0).visible = false
+	get_child(3).get_child(0).get_child(0).get_child(1).visible = false
+	get_child(3).get_child(0).get_child(0).get_child(6).visible = false
+	get_child(3).get_child(0).get_child(0).get_child(7).visible = false
+	
+	# Show the PUSH arms
+	get_child(3).get_child(2).visible = true
+
+
+func dontpush():
+	# Show the animated arms
+	# Player Model -> RIG -> Skeleton3D -> the arms
+	
+	get_child(3).get_child(0).get_child(0).get_child(0).visible = true
+	get_child(3).get_child(0).get_child(0).get_child(1).visible = true
+	get_child(3).get_child(0).get_child(0).get_child(6).visible = true
+	get_child(3).get_child(0).get_child(0).get_child(7).visible = true
+	
+	# Hide the PUSH arms
+	get_child(3).get_child(2).visible = false
