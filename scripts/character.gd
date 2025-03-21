@@ -16,13 +16,16 @@ func _physics_process(delta: float) -> void:
 	
 	if inputaxis > 0:
 		dir = 1
-		rotation.y = deg_to_rad(90)#lerpf(rotation.y, 90, 12)
+		rotation.y = deg_to_rad(90)
+		get_child(3).get_child(1).play("RUN") #gets the GIC Player then gets its Animation player
 	elif inputaxis < 0:
 		dir = -1
-		rotation.y = deg_to_rad(-90)#lerpf(rotation.y, -90, 12)
+		rotation.y = deg_to_rad(-90)
+		get_child(3).get_child(1).play("RUN")
 	else:
 		dir = 0
 		rotation.y = 0
+		get_child(3).get_child(1).play("IDLE")
 	
 	linear_velocity.x = SPEED * dir * delta
 	
@@ -40,6 +43,8 @@ func _physics_process(delta: float) -> void:
 		gravity_scale = lerpf(2,4,1.5)
 	elif linear_velocity.y > 0:
 		gravity_scale = 3
+	
+	
 	
 
 func _input(event: InputEvent) -> void:

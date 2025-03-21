@@ -5,12 +5,11 @@
 [node name="GIC Player" instance=ExtResource("1_rf76t")]
 
 [node name="Skeleton3D" parent="RIG" index="0"]
-bones/0/position = Vector3(0, -0.0956295, 0)
 bones/1/position = Vector3(0.739742, 1.173, 1.29864e-07)
-bones/1/rotation = Quaternion(0.844645, 0.427663, -0.287269, 0.14545)
+bones/1/rotation = Quaternion(0.860868, 0.393989, -0.292786, 0.133998)
 bones/2/position = Vector3(-0.739742, 1.173, 1.29864e-07)
-bones/2/rotation = Quaternion(0.844645, -0.427663, 0.287269, 0.14545)
-bones/3/position = Vector3(0, 1.60368, 0)
+bones/2/rotation = Quaternion(0.860868, -0.393989, 0.292786, 0.133998)
+bones/3/position = Vector3(0, 1.55519, 0)
 bones/4/position = Vector3(0.338202, -0.304268, -1.75898e-08)
 bones/4/rotation = Quaternion(0.94645, 0.0235005, -0.321893, 0.0079925)
 bones/5/position = Vector3(-0.338202, -0.304268, -1.75898e-08)
