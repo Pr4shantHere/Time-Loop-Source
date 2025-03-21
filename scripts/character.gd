@@ -5,6 +5,7 @@ extends RigidBody3D
 
 var dir : int = 0
 var canJump : bool
+var jumpInputCheck : bool #for the jump buffering
 var isGrounded
 
 func _ready() -> void:
@@ -17,20 +18,32 @@ func _physics_process(delta: float) -> void:
 	if inputaxis > 0:
 		dir = 1
 		rotation.y = deg_to_rad(90)
-		get_child(3).get_child(1).play("RUN") #gets the GIC Player then gets its Animation player
+		if isGrounded:
+			get_child(3).get_child(1).play("RUN") #gets the GIC Player then gets its Animation player
+		else:
+			get_child(3).get_child(1).play("JUMP")
+			
 	elif inputaxis < 0:
 		dir = -1
 		rotation.y = deg_to_rad(-90)
-		get_child(3).get_child(1).play("RUN")
+		if isGrounded:
+			get_child(3).get_child(1).play("RUN")
+		else:
+			get_child(3).get_child(1).play("JUMP")
+			
 	else:
 		dir = 0
 		rotation.y = 0
-		get_child(3).get_child(1).play("IDLE")
+		if isGrounded:
+			get_child(3).get_child(1).play("IDLE")
+		else:
+			get_child(3).get_child(1).play("JUMP")
 	
 	linear_velocity.x = SPEED * dir * delta
 	
 	if canJump && isGrounded:
 		Jump(delta)
+		canJump = false
 		
 	if $"Ground Check".is_colliding():
 		isGrounded = true
@@ -44,17 +57,23 @@ func _physics_process(delta: float) -> void:
 	elif linear_velocity.y > 0:
 		gravity_scale = 3
 	
-	
-	
+	if $JumpBufferingCheck.is_colliding():
+		jumpInputCheck = true
+	else:
+		jumpInputCheck = false
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Jump"):
-		if isGrounded:
+	if jumpInputCheck:
+		if event.is_action_pressed("Jump"):
 			canJump = true
-		else:
-			canJump = false 
-	if event.is_action_released("Jump"):
-		canJump = false
+	else:
+		canJump = false 
+			#if isGrounded:
+				#canJump = true
+			#else:
+				#canJump = false 
+		#if event.is_action_released("Jump"):
+			#canJump = false
 
 func Jump(delta):
 	linear_velocity.y = JUMPSPEED * delta
