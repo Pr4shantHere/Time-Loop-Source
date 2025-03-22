@@ -1,15 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://bd5sny6rbvw3a"]
+[gd_scene load_steps=8 format=3 uid="uid://bd5sny6rbvw3a"]
 
 [ext_resource type="ArrayMesh" uid="uid://k6scdifao51p" path="res://assets/Tiles/FLOOR.obj" id="1_jhpg2"]
 [ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="2_o6kl1"]
-[ext_resource type="Material" uid="uid://cevnr16w34qjf" path="res://mat_outline.tres" id="3_i3m0d"]
 [ext_resource type="ArrayMesh" uid="uid://brcwwfdvv5wyw" path="res://assets/Tiles/CORNER.obj" id="4_i3m0d"]
 [ext_resource type="ArrayMesh" uid="uid://b8hw4p2syt7dm" path="res://assets/Tiles/MIDDLE.obj" id="5_p5lnq"]
 [ext_resource type="ArrayMesh" uid="uid://sp0bc4yw4ql0" path="res://assets/Tiles/SIDE.obj" id="6_ddpu7"]
 [ext_resource type="ArrayMesh" uid="uid://bvoer1enxwabu" path="res://assets/Tiles/CORNERINVERTED.obj" id="7_exfrf"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_p5lnq"]
-size = Vector3(2.09277, 2.07031, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_ddpu7"]
+size = Vector3(1.99243, 2.00305, 1.95605)
 
 [node name="Tiles" type="Node3D"]
 
@@ -21,74 +20,52 @@ surface_material_override/0 = ExtResource("2_o6kl1")
 [node name="col" type="StaticBody3D" parent="Floor"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/col"]
-shape = SubResource("BoxShape3D_p5lnq")
-
-[node name="OUT" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(1.05, 0.0023729, 0.000714322, -0.00237391, 1.05, 0.00149687, -0.000710937, -0.00149848, 1.05, 0, 0, 0)
-mesh = ExtResource("1_jhpg2")
-skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("3_i3m0d")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00109863, 0.00640869, 0)
+shape = SubResource("BoxShape3D_ddpu7")
 
 [node name="Corner" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1.72288, 0, 0, 0)
+visible = false
 mesh = ExtResource("4_i3m0d")
 surface_material_override/0 = ExtResource("2_o6kl1")
 
 [node name="col" type="StaticBody3D" parent="Corner"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Corner/col"]
-shape = SubResource("BoxShape3D_p5lnq")
-
-[node name="OUT" type="MeshInstance3D" parent="Corner"]
-transform = Transform3D(1.05, 0.0023729, 0.000714322, -0.00237391, 1.05, 0.00149687, -0.000710937, -0.00149848, 1.05, 0, 0, 0)
-mesh = ExtResource("1_jhpg2")
-skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("3_i3m0d")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00109863, 0.00640869, 0)
+shape = SubResource("BoxShape3D_ddpu7")
 
 [node name="Middle" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1.72288, 0, 0, 0)
+visible = false
 mesh = ExtResource("5_p5lnq")
 surface_material_override/0 = ExtResource("2_o6kl1")
 
 [node name="col" type="StaticBody3D" parent="Middle"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Middle/col"]
-shape = SubResource("BoxShape3D_p5lnq")
-
-[node name="OUT" type="MeshInstance3D" parent="Middle"]
-transform = Transform3D(1.05, 0.0023729, 0.000714322, -0.00237391, 1.05, 0.00149687, -0.000710937, -0.00149848, 1.05, 0, 0, 0)
-mesh = ExtResource("1_jhpg2")
-skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("3_i3m0d")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00109863, 0.00640869, 0)
+shape = SubResource("BoxShape3D_ddpu7")
 
 [node name="Side" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1.72288, 0, 0, 0)
+visible = false
 mesh = ExtResource("6_ddpu7")
 surface_material_override/0 = ExtResource("2_o6kl1")
 
 [node name="col" type="StaticBody3D" parent="Side"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Side/col"]
-shape = SubResource("BoxShape3D_p5lnq")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00109863, 0.00640869, 0)
+shape = SubResource("BoxShape3D_ddpu7")
 
-[node name="OUT" type="MeshInstance3D" parent="Side"]
-transform = Transform3D(1.05, 0.0023729, 0.000714322, -0.00237391, 1.05, 0.00149687, -0.000710937, -0.00149848, 1.05, 0, 0, 0)
-mesh = ExtResource("1_jhpg2")
-skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("3_i3m0d")
-
-[node name="CornerInverted" type="MeshInstance3D" parent="."]
+[node name="Corner Inverted" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1.72288, 0, 0, 0)
 mesh = ExtResource("7_exfrf")
 surface_material_override/0 = ExtResource("2_o6kl1")
 
-[node name="col" type="StaticBody3D" parent="CornerInverted"]
+[node name="col" type="StaticBody3D" parent="Corner Inverted"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CornerInverted/col"]
-shape = SubResource("BoxShape3D_p5lnq")
-
-[node name="OUT" type="MeshInstance3D" parent="CornerInverted"]
-transform = Transform3D(1.05, 0.0023729, 0.000714322, -0.00237391, 1.05, 0.00149687, -0.000710937, -0.00149848, 1.05, 0, 0, 0)
-mesh = ExtResource("1_jhpg2")
-skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("3_i3m0d")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Corner Inverted/col"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00109863, 0.00640869, 0)
+shape = SubResource("BoxShape3D_ddpu7")
