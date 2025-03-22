@@ -6,9 +6,7 @@ extends RigidBody3D
 
 @export var LOOPTIMER = 15
 
-var hasRed : bool = false
-var hasWhite = false
-var hasBlue = false
+var hasOrb : bool = false
 
 
 var dir : int = 0

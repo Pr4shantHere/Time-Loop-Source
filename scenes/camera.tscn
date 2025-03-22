@@ -1,4 +1,85 @@
-[gd_scene format=3 uid="uid://c5vdidva7u6d1"]
+[gd_scene load_steps=9 format=3 uid="uid://c5vdidva7u6d1"]
+
+[ext_resource type="Script" uid="uid://b6srrjmtfmesa" path="res://scripts/camfollow.gd" id="1_cvpoc"]
+[ext_resource type="Texture2D" uid="uid://dfujlsnamjvcu" path="res://BEST COLOR PALETTE (Blurred).png" id="2_kod1s"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qawlr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tmlye"]
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("2_kod1s")
+metallic_specular = 0.0
+emission_texture = ExtResource("2_kod1s")
+
+[sub_resource type="Animation" id="Animation_qawlr"]
+resource_name = "IN"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.0408278, 7.43735, -2), Vector3(0.0408278, 0.535624, -2)]
+}
+
+[sub_resource type="Animation" id="Animation_cvpoc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0408278, 7.43735, -2)]
+}
+
+[sub_resource type="Animation" id="Animation_kod1s"]
+resource_name = "OUT"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.0408278, 0.535624, -2), Vector3(0.0408278, 7.43735, -2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kod1s"]
+_data = {
+&"IN": SubResource("Animation_qawlr"),
+&"OUT": SubResource("Animation_kod1s"),
+&"RESET": SubResource("Animation_cvpoc")
+}
 
 [node name="Camera" type="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.87664, 15)
+script = ExtResource("1_cvpoc")
+
+[node name="Transition" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, 0.0408278, 7.43735, -2)
+mesh = SubResource("PlaneMesh_qawlr")
+surface_material_override/0 = SubResource("StandardMaterial3D_tmlye")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kod1s")
+}
+autoplay = "OUT"
+speed_scale = 2.0
+
+[node name="WAITBEFORESWITCHING" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="WAITBEFORESWITCHING" to="." method="_on_waitbeforeswitching_timeout"]

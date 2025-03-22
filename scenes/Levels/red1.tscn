@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://i0p686j4fysx"]
+[gd_scene load_steps=10 format=3 uid="uid://i0p686j4fysx"]
 
 [ext_resource type="PackedScene" uid="uid://c70cn6y48w07a" path="res://scenes/root.tscn" id="1_d7hms"]
 [ext_resource type="PackedScene" uid="uid://c53f7drecsxyo" path="res://scenes/door_red.tscn" id="2_vjk86"]
@@ -6,7 +6,6 @@
 [ext_resource type="MeshLibrary" uid="uid://6gm5w8lhpv0m" path="res://tiles.tres" id="3_wd7v4"]
 [ext_resource type="PhysicsMaterial" uid="uid://bc1gyus4afxyl" path="res://gridphysicsmat.tres" id="4_gbet4"]
 [ext_resource type="PackedScene" uid="uid://c5vdidva7u6d1" path="res://scenes/camera.tscn" id="4_wd7v4"]
-[ext_resource type="Script" uid="uid://b6srrjmtfmesa" path="res://scripts/camfollow.gd" id="5_gbet4"]
 [ext_resource type="PackedScene" uid="uid://dfwrtg20nm80v" path="res://scenes/crate.tscn" id="5_wd7v4"]
 [ext_resource type="PackedScene" uid="uid://hfnnqmhrfnao" path="res://scenes/red_orb.tscn" id="6_gbet4"]
 
@@ -54,7 +53,6 @@ LOOPTIMER = 10
 
 [node name="Camera" parent="." index="3" instance=ExtResource("4_wd7v4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.87664, 15.8664)
-script = ExtResource("5_gbet4")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="5"]
 environment = SubResource("Environment_yhn3i")

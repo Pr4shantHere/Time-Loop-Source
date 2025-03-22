@@ -1,5 +1,7 @@
 extends Camera3D
 
+var canChange
+
 func _process(delta: float) -> void:
 	position.y = lerp(position.y, get_owner().get_node("Character").position.y + 4.877,0.12)
 	position.x = lerp(position.x, get_owner().get_node("Character").position.x , 0.12)
@@ -14,3 +16,7 @@ func _process(delta: float) -> void:
 
 	get_owner().get_node("TimerModel").position.x = posx
 	get_owner().get_node("TimerModel").position.y = posy
+
+
+func _on_waitbeforeswitching_timeout() -> void:
+	canChange = true
