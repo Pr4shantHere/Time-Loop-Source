@@ -10,7 +10,7 @@
 [node name="Root" instance=ExtResource("1_wnsjo")]
 
 [node name="LoopTimer" parent="." index="0"]
-wait_time = 10.0
+wait_time = 0.001
 autostart = true
 
 [node name="Level" type="Node3D" parent="." index="1"]
@@ -52,9 +52,10 @@ physics_material_override = null
 
 [node name="Character" parent="." index="2" instance=ExtResource("4_njarr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22327, 0)
-SPEED = 400
-JUMPSPEED = 850
-COYOTETIMER = 0.02
+LOOPTIMER = 3
 
 [node name="Camera" parent="." index="3" instance=ExtResource("5_15owt")]
 script = ExtResource("6_t6in1")
+
+[node name="stopwatch" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0.2, 5.5)

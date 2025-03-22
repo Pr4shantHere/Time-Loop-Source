@@ -1,8 +1,10 @@
 extends RigidBody3D
 
-@export var SPEED = 300
-@export var JUMPSPEED = 500
-@export var COYOTETIMER = 0.1
+@export var SPEED = 400
+@export var JUMPSPEED = 850
+@export var COYOTETIMER = 0.02
+
+@export var LOOPTIMER = 15
 
 var dir : int = 0
 var canJump : bool
@@ -78,6 +80,9 @@ func _physics_process(delta: float) -> void:
 	if round(linear_velocity).y < 0 && jumpCount == 0 && round(linear_velocity.y) > -10:
 		canCoyoteJump = true
 		$CoyoteTimer.start()
+		
+	get_owner().get_node("LoopTimer").wait_time = LOOPTIMER
+	get_owner().get_node("stopwatch/Hand").speed_scale = 1 / float(LOOPTIMER)
 
 
 func _input(event: InputEvent) -> void:
