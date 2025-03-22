@@ -68,6 +68,9 @@ LOOPTIMER = 10
 [node name="Camera" parent="." index="3" instance=ExtResource("4_wd7v4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.87664, 15.8664)
 
+[node name="stopwatch" parent="TimerModel" index="0"]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -10.5, 0.2, 5.5)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="5"]
 environment = SubResource("Environment_yhn3i")
 
