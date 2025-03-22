@@ -4,22 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://buisfdxkkfds7" path="res://assets/stopwatch.glb" id="2_lrqlo"]
 [ext_resource type="PackedScene" uid="uid://c32bnblx2j02c" path="res://assets/hand_stopw.glb" id="3_sqa0i"]
 
-[sub_resource type="Animation" id="Animation_lrqlo"]
-resource_name = "bob"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_sqa0i"]
 length = 0.001
 tracks/0/type = "value"
@@ -45,6 +29,22 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lrqlo"]
+resource_name = "bob"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_jh1ax"]
@@ -75,7 +75,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("stopwatch:scale")
+tracks/0/path = NodePath("TimerModel/stopwatch:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -90,7 +90,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("stopwatch:scale")
+tracks/0/path = NodePath("TimerModel/stopwatch:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -112,19 +112,22 @@ script = ExtResource("1_j5px3")
 [node name="LoopTimer" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="stopwatch" type="Node3D" parent="."]
+[node name="TimerModel" type="Node3D" parent="."]
+
+[node name="stopwatch" type="Node3D" parent="TimerModel"]
 transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -10.5, 0.2, 5.5)
 
-[node name="stopwatch" parent="stopwatch" instance=ExtResource("2_lrqlo")]
+[node name="stopwatch" parent="TimerModel/stopwatch" instance=ExtResource("2_lrqlo")]
 
-[node name="hand_stopw" parent="stopwatch" instance=ExtResource("3_sqa0i")]
+[node name="hand_stopw" parent="TimerModel/stopwatch" instance=ExtResource("3_sqa0i")]
 
-[node name="Hand" type="AnimationPlayer" parent="stopwatch"]
+[node name="Hand" type="AnimationPlayer" parent="TimerModel/stopwatch"]
 libraries = {
 &"": SubResource("AnimationLibrary_kycxp")
 }
 
-[node name="BOB" type="AnimationPlayer" parent="."]
+[node name="BOB" type="AnimationPlayer" parent="TimerModel"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_5sfjl")
 }

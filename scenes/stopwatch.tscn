@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4eobachdakrm"]
+
+[ext_resource type="PackedScene" uid="uid://buisfdxkkfds7" path="res://assets/stopwatch.glb" id="1_uny1b"]
+[ext_resource type="PackedScene" uid="uid://c32bnblx2j02c" path="res://assets/hand_stopw.glb" id="2_nu78o"]
+
+[sub_resource type="Animation" id="Animation_lrqlo"]
+resource_name = "bob"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sqa0i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.1, 1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hand_stopw:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jh1ax"]
+resource_name = "hand"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hand_stopw:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33, 0.66, 0.99),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 2.0944), Vector3(0, 0, 4.18879), Vector3(0, 0, 6.28319)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kycxp"]
+_data = {
+&"RESET": SubResource("Animation_sqa0i"),
+&"bob": SubResource("Animation_lrqlo"),
+&"hand": SubResource("Animation_jh1ax")
+}
+
+[node name="stopwatch" type="Node3D"]
+transform = Transform3D(1.08329, 0, 0.191013, 0, 1.1, 0, -0.191013, 0, 1.08329, -10.5, 0.2, 5.5)
+
+[node name="stopwatch" parent="." instance=ExtResource("1_uny1b")]
+
+[node name="hand_stopw" parent="." instance=ExtResource("2_nu78o")]
+
+[node name="Hand" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kycxp")
+}

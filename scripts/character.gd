@@ -82,7 +82,7 @@ func _physics_process(delta: float) -> void:
 		$CoyoteTimer.start()
 		
 	get_owner().get_node("LoopTimer").wait_time = LOOPTIMER
-	get_owner().get_node("stopwatch/Hand").speed_scale = 1 / float(LOOPTIMER)
+	get_owner().get_node("TimerModel/stopwatch/Hand").speed_scale = 1 / float(LOOPTIMER)
 
 
 func _input(event: InputEvent) -> void:
