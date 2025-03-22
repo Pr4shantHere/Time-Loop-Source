@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://olo0q7pcy4vi"]
+
+[ext_resource type="Script" uid="uid://d07wuksfe58pf" path="res://scenes/spikes.gd" id="1_0vi4p"]
+[ext_resource type="ArrayMesh" uid="uid://db75dnu3iwvss" path="res://assets/SPIKES.obj" id="1_xbcdo"]
+[ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="2_bflj7"]
+[ext_resource type="ArrayMesh" uid="uid://re3cpd6npy71" path="res://assets/SPIKE OUTLINE.obj" id="3_kd5gq"]
+[ext_resource type="Material" uid="uid://cevnr16w34qjf" path="res://mat_outline.tres" id="4_0vi4p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kd5gq"]
+size = Vector3(1.5625, 0.489532, 1.79688)
+
+[node name="spikes" type="StaticBody3D"]
+script = ExtResource("1_0vi4p")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_xbcdo")
+surface_material_override/0 = ExtResource("2_bflj7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77179, 0)
+shape = SubResource("BoxShape3D_kd5gq")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Area3D"]
+mesh = ExtResource("3_kd5gq")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_0vi4p")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.731216, 0)
+shape = SubResource("BoxShape3D_kd5gq")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

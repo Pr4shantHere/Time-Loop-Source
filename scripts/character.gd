@@ -108,7 +108,8 @@ func _physics_process(delta: float) -> void:
 		if $CollisionCheck.get_collider() == Area3D:
 			print("scene change")
 
-
+	get_owner().get_node("Blood").position = position
+	get_owner().get_node("Blood").visible = false
 
 func _input(event: InputEvent) -> void:
 	if jumpInputCheck == true or canCoyoteJump == true:
@@ -160,3 +161,12 @@ func dontpush():
 
 func _on_coyote_timer_timeout() -> void:
 	canCoyoteJump = false
+
+func kill():
+	get_node("Blood").emitting = true
+	get_node("Respawn").start()
+	get_node("GIC Player").visible = false
+
+
+func _on_respawn_timeout() -> void:
+	get_tree().reload_current_scene()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://i0p686j4fysx"]
+[gd_scene load_steps=14 format=3 uid="uid://i0p686j4fysx"]
 
 [ext_resource type="PackedScene" uid="uid://c70cn6y48w07a" path="res://scenes/root.tscn" id="1_d7hms"]
 [ext_resource type="PackedScene" uid="uid://c53f7drecsxyo" path="res://scenes/door_red.tscn" id="2_vjk86"]
@@ -8,10 +8,21 @@
 [ext_resource type="PackedScene" uid="uid://c5vdidva7u6d1" path="res://scenes/camera.tscn" id="4_wd7v4"]
 [ext_resource type="PackedScene" uid="uid://dfwrtg20nm80v" path="res://scenes/crate.tscn" id="5_wd7v4"]
 [ext_resource type="PackedScene" uid="uid://hfnnqmhrfnao" path="res://scenes/red_orb.tscn" id="6_gbet4"]
+[ext_resource type="PackedScene" uid="uid://olo0q7pcy4vi" path="res://scenes/spikes.tscn" id="6_yhn3i"]
 
 [sub_resource type="Environment" id="Environment_yhn3i"]
 background_mode = 1
 background_color = Color(0.163756, 0.0174554, 0.0282448, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wd7v4"]
+emission_enabled = true
+emission = Color(0.758077, 0.107873, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_gbet4"]
+
+[sub_resource type="Curve" id="Curve_yhn3i"]
+_data = [Vector2(0.00564972, 0.996873), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.71466, 0.0, 0, 0]
+point_count = 2
 
 [node name="Root" instance=ExtResource("1_d7hms")]
 
@@ -47,6 +58,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.9929, 11.6452, 0)
 [node name="Crate2" parent="Level" index="6" instance=ExtResource("5_wd7v4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.2073, 5.27641, 0)
 
+[node name="spikes" parent="Level" index="7" instance=ExtResource("6_yhn3i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1789, 1.34879, 1.00468)
+
 [node name="Character" parent="." index="2" instance=ExtResource("3_8sh7q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.11026, 0.866412)
 LOOPTIMER = 10
@@ -59,3 +73,28 @@ environment = SubResource("Environment_yhn3i")
 
 [node name="Red Orb" parent="." index="6" instance=ExtResource("6_gbet4")]
 transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 47.1921, 9.12897, 0)
+
+[node name="Blood" type="CPUParticles3D" parent="." index="7"]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_wd7v4")
+emitting = false
+amount = 16
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+mesh = SubResource("SphereMesh_gbet4")
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(1, 1, 1)
+spread = 90.0
+initial_velocity_min = 4.0
+initial_velocity_max = 16.0
+linear_accel_min = 1.0
+linear_accel_max = 2.0
+angle_max = 360.0
+scale_amount_min = 0.4
+scale_amount_max = 0.8
+scale_amount_curve = SubResource("Curve_yhn3i")
+color = Color(1, 0.06, 0.06, 1)

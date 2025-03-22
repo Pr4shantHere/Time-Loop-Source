@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkge6ci8anka"]
+[gd_scene load_steps=11 format=3 uid="uid://bkge6ci8anka"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bhy5bq5oyhrlv" path="res://nofriction.tres" id="1_18etf"]
 [ext_resource type="Script" uid="uid://diq4lfhlewq6d" path="res://scripts/character.gd" id="1_oqwy7"]
@@ -15,6 +15,16 @@ emission_texture = ExtResource("3_8cgb6")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_18etf"]
 radius = 0.558933
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ktta"]
+emission_enabled = true
+emission = Color(0.758077, 0.107873, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8kjla"]
+
+[sub_resource type="Curve" id="Curve_6ndq7"]
+_data = [Vector2(0.00564972, 0.996873), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.71466, 0.0, 0, 0]
+point_count = 2
 
 [node name="Character" type="RigidBody3D"]
 axis_lock_linear_z = true
@@ -54,4 +64,35 @@ one_shot = true
 [node name="FollowTarget" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 
+[node name="Blood" type="CPUParticles3D" parent="."]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_3ktta")
+emitting = false
+amount = 16
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+mesh = SubResource("SphereMesh_8kjla")
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(1, 1, 1)
+spread = 90.0
+initial_velocity_min = 4.0
+initial_velocity_max = 16.0
+linear_accel_min = 1.0
+linear_accel_max = 2.0
+angle_max = 360.0
+scale_amount_min = 0.4
+scale_amount_max = 0.8
+scale_amount_curve = SubResource("Curve_6ndq7")
+color = Color(1, 0.06, 0.06, 1)
+
+[node name="Respawn" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.35
+one_shot = true
+
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
+[connection signal="timeout" from="Respawn" to="." method="_on_respawn_timeout"]

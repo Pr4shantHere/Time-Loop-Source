@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfwrtg20nm80v"]
+[gd_scene load_steps=9 format=3 uid="uid://dfwrtg20nm80v"]
 
 [ext_resource type="Script" uid="uid://drv70eg72ih4u" path="res://scripts/resetobject.gd" id="2_74u5o"]
-[ext_resource type="Material" uid="uid://cevnr16w34qjf" path="res://mat_outline.tres" id="3_kn6iu"]
 [ext_resource type="PackedScene" uid="uid://b2oit40fifnn5" path="res://assets/crate.glb" id="4_74u5o"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kn6iu"]
@@ -11,6 +10,19 @@ size = Vector3(1.97437, 2, 1.97461)
 
 [sub_resource type="BoxMesh" id="BoxMesh_74u5o"]
 size = Vector3(1.9, 1.9, 1.9)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dwt0d"]
+load_path = "res://.godot/imported/BEST COLOR PALETTE (Blurred).png-18253cfce2ee66d7587b3bfc8a5677fc.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kn6iu"]
+load_path = "res://.godot/imported/BEST COLOR PALETTE (Blurred).png-18253cfce2ee66d7587b3bfc8a5677fc.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74u5o"]
+cull_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = SubResource("CompressedTexture2D_dwt0d")
+metallic_specular = 0.0
+emission_texture = SubResource("CompressedTexture2D_kn6iu")
 
 [node name="Crate" type="RigidBody3D"]
 axis_lock_linear_z = true
@@ -27,7 +39,7 @@ shape = SubResource("BoxShape3D_74u5o")
 
 [node name="outline" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_74u5o")
-surface_material_override/0 = ExtResource("3_kn6iu")
+surface_material_override/0 = SubResource("StandardMaterial3D_74u5o")
 
 [node name="crate" parent="." instance=ExtResource("4_74u5o")]
 transform = Transform3D(0.88, 0, 0, 0, 0.88, 0, 0, 0, 0.88, 0, 0, 0)
