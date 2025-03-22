@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c70cn6y48w07a"]
+
+[ext_resource type="Script" uid="uid://dj0nrpothuktk" path="res://scripts/global.gd" id="1_j5px3"]
+
+[node name="Root" type="Node3D"]
+script = ExtResource("1_j5px3")
+
+[node name="LoopTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="LoopTimer" to="." method="_on_loop_timer_timeout"]

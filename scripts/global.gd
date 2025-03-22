@@ -4,10 +4,13 @@ var reset : bool = false
 
 func _process(delta: float) -> void:
 	if reset == true:
-		$Timer.start()
+		$LoopTimer.start()
 		reset = false
 
 
 func _on_timer_timeout() -> void:
 	reset = true
-	print(reset)
+
+
+func _on_loop_timer_timeout() -> void:
+	reset = true

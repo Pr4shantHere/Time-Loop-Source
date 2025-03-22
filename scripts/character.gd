@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 		gravity_scale = 3
 		jumpCount = 1
 	
-	if $JumpBufferingCheck.is_colliding():
+	if $JumpBufferingCheck.is_colliding() && round(linear_velocity.y) < 2:
 		jumpInputCheck = true
 	else:
 		jumpInputCheck = false
@@ -82,7 +82,8 @@ func _input(event: InputEvent) -> void:
 	if jumpInputCheck == true or canCoyoteJump == true:
 		if event.is_action_pressed("Jump"):
 			canJump = true 
-
+	#if event.is_action_pressed("Jump"):
+		#print("jumpBUffer: ", jumpInputCheck)
 
 func Jump(delta):
 	jumpCount = 1 

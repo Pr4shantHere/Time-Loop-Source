@@ -1,14 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dirtnhoy8lt7t"]
+[gd_scene load_steps=6 format=3 uid="uid://dirtnhoy8lt7t"]
 
 [ext_resource type="PackedScene" uid="uid://dfwrtg20nm80v" path="res://scenes/crate.tscn" id="1_0aq6d"]
 [ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="1_irwmq"]
-[ext_resource type="Script" uid="uid://dj0nrpothuktk" path="res://scripts/global.gd" id="1_kv812"]
 [ext_resource type="PackedScene" uid="uid://bkge6ci8anka" path="res://scripts/character.tscn" id="1_q753v"]
 [ext_resource type="PackedScene" uid="uid://c5vdidva7u6d1" path="res://scenes/camera.tscn" id="4_hakmx"]
 [ext_resource type="Script" uid="uid://b6srrjmtfmesa" path="res://scripts/camfollow.gd" id="5_0nr8p"]
 
 [node name="Main" type="Node3D"]
-script = ExtResource("1_kv812")
 
 [node name="Level" type="Node3D" parent="."]
 
@@ -55,9 +53,3 @@ COYOTETIMER = 0.02
 
 [node name="Camera" parent="." instance=ExtResource("4_hakmx")]
 script = ExtResource("5_0nr8p")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
