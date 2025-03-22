@@ -1,7 +1,7 @@
 extends RigidBody3D
 
-@export var SPEED = 400
-@export var JUMPSPEED = 850
+@export var SPEED = 650
+@export var JUMPSPEED = 925
 @export var COYOTETIMER = 0.02
 
 @export var LOOPTIMER = 15
@@ -12,11 +12,13 @@ var jumpInputCheck : bool #for the jump buffering
 var isGrounded : bool
 var jumpCount : int
 var canCoyoteJump : bool
+var vel
 
 func _ready() -> void:
 	jumpCount = 0
 	canCoyoteJump = false
 	dontpush()
+	isGrounded = true
 	$CoyoteTimer.wait_time = COYOTETIMER
 
 func _physics_process(delta: float) -> void:
@@ -48,7 +50,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			get_child(3).get_child(1).play("JUMP")
 	
-	linear_velocity.x = SPEED * dir * delta
+	linear_velocity.x = vel * dir * delta
 	
 	if canJump && isGrounded or canJump && canCoyoteJump:
 		Jump(delta)
@@ -74,6 +76,13 @@ func _physics_process(delta: float) -> void:
 		
 	if $CollisionCheck.is_colliding() && dir != 0:
 		push()
+		
+		if $CollisionCheck.get_collider() is RigidBody3D:
+			$CollisionCheck.get_collider().mass = 10
+			$CollisionCheck.get_collider().linear_velocity.y = 0
+			$CollisionCheck.get_collider().linear_velocity.x = linear_velocity.x
+			# resetting is done in the script for the crate itself
+	
 	else:
 		dontpush()
 	
@@ -89,8 +98,9 @@ func _input(event: InputEvent) -> void:
 	if jumpInputCheck == true or canCoyoteJump == true:
 		if event.is_action_pressed("Jump"):
 			canJump = true 
-	#if event.is_action_pressed("Jump"):
-		#print("jumpBUffer: ", jumpInputCheck)
+			
+	if event.is_action_pressed("Reset"):
+		get_tree().reload_current_scene()
 
 func Jump(delta):
 	jumpCount = 1 
@@ -112,6 +122,8 @@ func push():
 	
 	# Make the animation faster to show that work is done
 	get_child(3).get_child(1).speed_scale = 7
+	
+	vel = 340
 
 
 func dontpush():
@@ -128,6 +140,7 @@ func dontpush():
 	
 	get_child(3).get_child(1).speed_scale = 4.5
 
+	vel = SPEED
 
 func _on_coyote_timer_timeout() -> void:
 	canCoyoteJump = false

@@ -1,22 +1,28 @@
 [gd_scene load_steps=7 format=3 uid="uid://dfwrtg20nm80v"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://bhy5bq5oyhrlv" path="res://nofriction.tres" id="1_dwt0d"]
 [ext_resource type="Script" uid="uid://drv70eg72ih4u" path="res://scripts/resetobject.gd" id="2_74u5o"]
 [ext_resource type="Material" uid="uid://cevnr16w34qjf" path="res://mat_outline.tres" id="3_kn6iu"]
 [ext_resource type="PackedScene" uid="uid://b2oit40fifnn5" path="res://assets/crate.glb" id="4_74u5o"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kn6iu"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_74u5o"]
-size = Vector3(1.97437, 1.93274, 1.97461)
+size = Vector3(1.97437, 2, 1.97461)
 
 [sub_resource type="BoxMesh" id="BoxMesh_74u5o"]
 size = Vector3(1.9, 1.9, 1.9)
 
 [node name="Crate" type="RigidBody3D"]
-physics_material_override = ExtResource("1_dwt0d")
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 10000.0
+physics_material_override = SubResource("PhysicsMaterial_kn6iu")
 script = ExtResource("2_74u5o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00933838, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0242916, 0)
 shape = SubResource("BoxShape3D_74u5o")
 
 [node name="outline" type="MeshInstance3D" parent="."]

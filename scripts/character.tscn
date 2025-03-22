@@ -14,6 +14,7 @@ emission_enabled = true
 emission_texture = ExtResource("3_8cgb6")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_18etf"]
+radius = 0.558933
 
 [node name="Character" type="RigidBody3D"]
 axis_lock_linear_z = true
