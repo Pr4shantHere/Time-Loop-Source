@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://8pr4hfyetyte"]
+[gd_scene load_steps=19 format=3 uid="uid://8pr4hfyetyte"]
 
 [ext_resource type="PackedScene" uid="uid://c70cn6y48w07a" path="res://scenes/root.tscn" id="1_wnsjo"]
 [ext_resource type="PackedScene" uid="uid://c53f7drecsxyo" path="res://scenes/door_red.tscn" id="4_611ke"]
@@ -12,7 +12,6 @@
 [ext_resource type="ArrayMesh" uid="uid://5x4g4bvdayia" path="res://assets/PEDESTAL.obj" id="9_t6in1"]
 [ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="10_lrtwg"]
 [ext_resource type="ArrayMesh" uid="uid://b46setautrryk" path="res://assets/RED.obj" id="10_q6d3x"]
-[ext_resource type="ArrayMesh" uid="uid://sh5r55vsgkvg" path="res://assets/WHITE.obj" id="11_lrtwg"]
 [ext_resource type="ArrayMesh" uid="uid://cvkbh2yw1evjv" path="res://assets/BLUE.obj" id="13_j13p3"]
 
 [sub_resource type="Environment" id="Environment_gvgml"]
@@ -78,6 +77,7 @@ data = {
 
 [node name="Door Red" parent="Level" index="1" instance=ExtResource("4_611ke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 5.1955, -0.755334)
+sceneToLoad = "red1"
 
 [node name="Door Blue" parent="Level" index="2" instance=ExtResource("5_gvgml")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.2007, 5.34482, 0)
@@ -115,16 +115,11 @@ mesh = ExtResource("10_q6d3x")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("10_lrtwg")
 
-[node name="WHITE" type="MeshInstance3D" parent="PEDESTAL/Area3D" index="2"]
-mesh = ExtResource("11_lrtwg")
-skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("10_lrtwg")
-
-[node name="BLUE" type="MeshInstance3D" parent="PEDESTAL/Area3D" index="3"]
+[node name="BLUE" type="MeshInstance3D" parent="PEDESTAL/Area3D" index="2"]
 mesh = ExtResource("13_j13p3")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("10_lrtwg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PEDESTAL/Area3D" index="4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PEDESTAL/Area3D" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.49078)
 shape = SubResource("BoxShape3D_lrtwg")

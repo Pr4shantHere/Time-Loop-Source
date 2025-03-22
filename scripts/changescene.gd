@@ -11,6 +11,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if canChange && Input.is_action_pressed("Interact"):
 		print("changescene")
+		
+	if sceneToLoad == "main":
+		sceneToLoad = mainscene
 
 
 func _on_body_entered(body: Node3D) -> void:

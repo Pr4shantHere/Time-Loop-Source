@@ -6,6 +6,11 @@ extends RigidBody3D
 
 @export var LOOPTIMER = 15
 
+var hasRed : bool = false
+var hasWhite = false
+var hasBlue = false
+
+
 var dir : int = 0
 var canJump : bool
 var jumpInputCheck : bool #for the jump buffering
@@ -14,9 +19,6 @@ var jumpCount : int
 var canCoyoteJump : bool
 var vel
 
-var hasRed = false
-var hasWhite = false
-var hasBlue = false
 
 
 func _ready() -> void:

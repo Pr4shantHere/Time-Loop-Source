@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://hfnnqmhrfnao"]
+[gd_scene load_steps=10 format=3 uid="uid://hfnnqmhrfnao"]
 
+[ext_resource type="Script" uid="uid://0p678jxmnhno" path="res://scripts/orb.gd" id="1_8ji51"]
 [ext_resource type="ArrayMesh" uid="uid://bg6p1i8pl4xiy" path="res://assets/Orbs/Red Orb.obj" id="1_jigkk"]
 [ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="2_8ji51"]
 [ext_resource type="Texture2D" uid="uid://dfujlsnamjvcu" path="res://BEST COLOR PALETTE (Blurred).png" id="3_frsn5"]
@@ -12,6 +13,7 @@ emission_enabled = true
 emission = Color(1, 1, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g1tib"]
+size = Vector3(3.36035, 7.98047, 6.36035)
 
 [sub_resource type="Animation" id="Animation_g6cbt"]
 resource_name = "Orb"
@@ -75,6 +77,7 @@ _data = {
 }
 
 [node name="Red Orb" type="Node3D"]
+script = ExtResource("1_8ji51")
 
 [node name="Meshes for Anim" type="Node3D" parent="."]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
@@ -101,3 +104,5 @@ libraries = {
 }
 autoplay = "Orb"
 speed_scale = 0.5
+
+[connection signal="body_entered" from="Meshes for Anim/Area3D" to="." method="_on_area_3d_body_entered"]
