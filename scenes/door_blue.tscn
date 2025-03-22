@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://g2f8rjilu7hn"]
+
+[ext_resource type="Script" uid="uid://dsj73ek31x88m" path="res://scripts/changescene.gd" id="1_igygv"]
+[ext_resource type="ArrayMesh" uid="uid://cm24r23da34iq" path="res://assets/Door Blue.obj" id="1_uumj2"]
+[ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="2_6uulu"]
+[ext_resource type="PackedScene" uid="uid://btmljx2xnnhsu" path="res://scenes/blue_orb.tscn" id="3_6uulu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_igygv"]
+size = Vector3(4.58887, 9.50873, 7.3089)
+
+[node name="Door Blue" type="Area3D"]
+script = ExtResource("1_igygv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+mesh = ExtResource("1_uumj2")
+surface_material_override/0 = ExtResource("2_6uulu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.571228, 2.8732)
+shape = SubResource("BoxShape3D_igygv")
+
+[node name="Blue Orb" parent="." instance=ExtResource("3_6uulu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)

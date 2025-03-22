@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://c53f7drecsxyo"]
+
+[ext_resource type="Script" uid="uid://dsj73ek31x88m" path="res://scripts/changescene.gd" id="1_fnvpx"]
+[ext_resource type="ArrayMesh" uid="uid://odmo80ykq7pl" path="res://assets/Door Red.obj" id="1_yun78"]
+[ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="2_axa0d"]
+[ext_resource type="PackedScene" uid="uid://hfnnqmhrfnao" path="res://scenes/red_orb.tscn" id="3_axa0d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yun78"]
+size = Vector3(4.58887, 9.50873, 8.48303)
+
+[node name="Door Red" type="Area3D"]
+script = ExtResource("1_fnvpx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+mesh = ExtResource("1_yun78")
+surface_material_override/0 = ExtResource("2_axa0d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.583832, 4.08427)
+shape = SubResource("BoxShape3D_yun78")
+
+[node name="Red Orb" parent="." instance=ExtResource("3_axa0d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

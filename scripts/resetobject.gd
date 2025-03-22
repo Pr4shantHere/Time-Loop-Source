@@ -12,7 +12,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if get_owner().reset == true && isResetable:
 		position = pos_start
-		print(position)
 	
 	if isPushable:
 		if get_owner().get_node("Character").dir == 0:

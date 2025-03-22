@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://dg7atbrkqbu5d"]
+
+[ext_resource type="PackedScene" uid="uid://c70cn6y48w07a" path="res://scenes/root.tscn" id="1_it4jc"]
+[ext_resource type="MeshLibrary" uid="uid://6gm5w8lhpv0m" path="res://tiles.tres" id="2_l7q23"]
+[ext_resource type="PhysicsMaterial" uid="uid://bc1gyus4afxyl" path="res://gridphysicsmat.tres" id="3_s4ask"]
+[ext_resource type="PackedScene" uid="uid://dfwrtg20nm80v" path="res://scenes/crate.tscn" id="4_l7q23"]
+[ext_resource type="PackedScene" uid="uid://bkge6ci8anka" path="res://scripts/character.tscn" id="4_y4f0e"]
+[ext_resource type="PackedScene" uid="uid://c5vdidva7u6d1" path="res://scenes/camera.tscn" id="5_wwht8"]
+[ext_resource type="Script" uid="uid://b6srrjmtfmesa" path="res://scripts/camfollow.gd" id="6_ehsm3"]
+
+[node name="Root" instance=ExtResource("1_it4jc")]
+
+[node name="LoopTimer" parent="." index="0"]
+wait_time = 0.001
+autostart = true
+
+[node name="Level" type="Node3D" parent="." index="1"]
+
+[node name="Main Menu" type="Node3D" parent="Level" index="0"]
+
+[node name="GridMap" type="GridMap" parent="Level" index="1"]
+mesh_library = ExtResource("2_l7q23")
+physics_material = ExtResource("3_s4ask")
+data = {
+"cells": PackedInt32Array(-2, 0, 720896, -1, 0, 720896, 0, 0, 720896, 1, 0, 720896, -65535, 0, 720896, -65534, 0, 720896, -65533, 0, 720896, 3, 0, 720896, 4, 0, 720896, -65532, 0, 720896, -65531, 0, 720896)
+}
+
+[node name="Crate" parent="Level" index="2" instance=ExtResource("4_l7q23")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, 0)
+
+[node name="Character" parent="." index="2" instance=ExtResource("4_y4f0e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.11026, 0.866412)
+
+[node name="Camera" parent="." index="3" instance=ExtResource("5_wwht8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.87664, 15.8664)
+script = ExtResource("6_ehsm3")

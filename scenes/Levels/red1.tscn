@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://i0p686j4fysx"]
+
+[ext_resource type="PackedScene" uid="uid://c70cn6y48w07a" path="res://scenes/root.tscn" id="1_d7hms"]
+[ext_resource type="PackedScene" uid="uid://c53f7drecsxyo" path="res://scenes/door_red.tscn" id="2_vjk86"]
+[ext_resource type="PackedScene" uid="uid://bkge6ci8anka" path="res://scripts/character.tscn" id="3_8sh7q"]
+[ext_resource type="PackedScene" uid="uid://c5vdidva7u6d1" path="res://scenes/camera.tscn" id="4_wd7v4"]
+[ext_resource type="Script" uid="uid://b6srrjmtfmesa" path="res://scripts/camfollow.gd" id="5_gbet4"]
+
+[sub_resource type="Environment" id="Environment_yhn3i"]
+background_mode = 1
+background_color = Color(0.163756, 0.0174554, 0.0282448, 1)
+
+[node name="Root" instance=ExtResource("1_d7hms")]
+
+[node name="LoopTimer" parent="." index="0"]
+wait_time = 0.001
+autostart = true
+
+[node name="Level" type="Node3D" parent="." index="1"]
+
+[node name="Door Red" parent="Level" index="0" instance=ExtResource("2_vjk86")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 5.1955, -0.755334)
+
+[node name="Character" parent="." index="2" instance=ExtResource("3_8sh7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.11026, 0.866412)
+
+[node name="Camera" parent="." index="3" instance=ExtResource("4_wd7v4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.87664, 15.8664)
+script = ExtResource("5_gbet4")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="5"]
+environment = SubResource("Environment_yhn3i")

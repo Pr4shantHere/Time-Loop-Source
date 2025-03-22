@@ -14,6 +14,11 @@ var jumpCount : int
 var canCoyoteJump : bool
 var vel
 
+var hasRed = false
+var hasWhite = false
+var hasBlue = false
+
+
 func _ready() -> void:
 	jumpCount = 0
 	canCoyoteJump = false
@@ -97,6 +102,12 @@ func _physics_process(delta: float) -> void:
 		
 	get_owner().get_node("LoopTimer").wait_time = LOOPTIMER
 	get_owner().get_node("TimerModel/stopwatch/Hand").speed_scale = 1 / float(LOOPTIMER)
+
+
+	if $CollisionCheck.is_colliding():# && Input.is_action_pressed("Interact"):
+		if $CollisionCheck.get_collider() == Area3D:
+			print("scene change")
+
 
 
 func _input(event: InputEvent) -> void:
