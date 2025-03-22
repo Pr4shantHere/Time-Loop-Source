@@ -1,14 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://bd5sny6rbvw3a"]
+[gd_scene load_steps=10 format=3 uid="uid://bd5sny6rbvw3a"]
 
 [ext_resource type="ArrayMesh" uid="uid://k6scdifao51p" path="res://assets/Tiles/FLOOR.obj" id="1_jhpg2"]
 [ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="2_o6kl1"]
 [ext_resource type="ArrayMesh" uid="uid://brcwwfdvv5wyw" path="res://assets/Tiles/CORNER.obj" id="4_i3m0d"]
 [ext_resource type="ArrayMesh" uid="uid://b8hw4p2syt7dm" path="res://assets/Tiles/MIDDLE.obj" id="5_p5lnq"]
 [ext_resource type="ArrayMesh" uid="uid://sp0bc4yw4ql0" path="res://assets/Tiles/SIDE.obj" id="6_ddpu7"]
+[ext_resource type="Texture2D" uid="uid://dfujlsnamjvcu" path="res://BEST COLOR PALETTE (Blurred).png" id="7_c1tb5"]
 [ext_resource type="ArrayMesh" uid="uid://bvoer1enxwabu" path="res://assets/Tiles/CORNERINVERTED.obj" id="7_exfrf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ddpu7"]
 size = Vector3(1.99243, 2.00305, 1.95605)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3lnv"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = ExtResource("7_c1tb5")
+metallic_specular = 0.0
+emission_enabled = true
+emission_texture = ExtResource("7_c1tb5")
 
 [node name="Tiles" type="Node3D"]
 
@@ -66,3 +75,8 @@ surface_material_override/0 = ExtResource("2_o6kl1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Corner Inverted/col"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00109863, 0.00640869, 0)
 shape = SubResource("BoxShape3D_ddpu7")
+
+[node name="Empty" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1.72288, -0.00383973, 0.00528693, 0.00541735)
+mesh = ExtResource("7_exfrf")
+surface_material_override/0 = SubResource("StandardMaterial3D_o3lnv")

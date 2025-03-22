@@ -6,6 +6,7 @@ func _process(delta: float) -> void:
 	if reset == true:
 		$LoopTimer.start()
 		reset = false
+		print(reset)
 	
 	if $LoopTimer.time_left > 5:
 		$TimerModel.get_node("BOB").speed_scale = 1
@@ -20,3 +21,4 @@ func _process(delta: float) -> void:
 
 func _on_loop_timer_timeout() -> void:
 	reset = true
+	print(reset)

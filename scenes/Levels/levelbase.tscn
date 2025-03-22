@@ -1,0 +1,148 @@
+[gd_scene load_steps=15 format=3 uid="uid://dlywt6ilixuv0"]
+
+[ext_resource type="Script" uid="uid://dj0nrpothuktk" path="res://scripts/global.gd" id="1_7xwdw"]
+[ext_resource type="PackedScene" uid="uid://buisfdxkkfds7" path="res://assets/stopwatch.glb" id="2_j4b8c"]
+[ext_resource type="PackedScene" uid="uid://c32bnblx2j02c" path="res://assets/hand_stopw.glb" id="3_phdad"]
+[ext_resource type="PackedScene" uid="uid://bkge6ci8anka" path="res://scripts/character.tscn" id="4_kj5p4"]
+[ext_resource type="PackedScene" uid="uid://c5vdidva7u6d1" path="res://scenes/camera.tscn" id="5_ktdn5"]
+[ext_resource type="MeshLibrary" uid="uid://6gm5w8lhpv0m" path="res://tiles.tres" id="6_vvf4f"]
+[ext_resource type="PhysicsMaterial" uid="uid://bc1gyus4afxyl" path="res://gridphysicsmat.tres" id="7_5wjee"]
+
+[sub_resource type="Animation" id="Animation_sqa0i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.1, 1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hand_stopw:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lrqlo"]
+resource_name = "bob"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jh1ax"]
+resource_name = "hand"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hand_stopw:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33, 0.66, 0.99),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 2.0944), Vector3(0, 0, 4.18879), Vector3(0, 0, 6.28319)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kycxp"]
+_data = {
+&"RESET": SubResource("Animation_sqa0i"),
+&"bob": SubResource("Animation_lrqlo"),
+&"hand": SubResource("Animation_jh1ax")
+}
+
+[sub_resource type="Animation" id="Animation_kycxp"]
+resource_name = "BOB"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TimerModel/stopwatch:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0.5, 0.5), Vector3(0.6, 0.6, 0.6), Vector3(0.5, 0.5, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_j287u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TimerModel/stopwatch:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5sfjl"]
+_data = {
+&"BOB": SubResource("Animation_kycxp"),
+&"RESET": SubResource("Animation_j287u")
+}
+
+[node name="Root" type="Node3D"]
+script = ExtResource("1_7xwdw")
+
+[node name="LoopTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="TimerModel" type="Node3D" parent="."]
+
+[node name="stopwatch" type="Node3D" parent="TimerModel"]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -10.5, 0.2, 5.5)
+
+[node name="stopwatch" parent="TimerModel/stopwatch" instance=ExtResource("2_j4b8c")]
+
+[node name="hand_stopw" parent="TimerModel/stopwatch" instance=ExtResource("3_phdad")]
+
+[node name="Hand" type="AnimationPlayer" parent="TimerModel/stopwatch"]
+libraries = {
+&"": SubResource("AnimationLibrary_kycxp")
+}
+
+[node name="BOB" type="AnimationPlayer" parent="TimerModel"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_5sfjl")
+}
+autoplay = "BOB"
+
+[node name="Character" parent="." instance=ExtResource("4_kj5p4")]
+
+[node name="Camera" parent="." instance=ExtResource("5_ktdn5")]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("6_vvf4f")
+physics_material = ExtResource("7_5wjee")
+
+[connection signal="timeout" from="LoopTimer" to="." method="_on_loop_timer_timeout"]

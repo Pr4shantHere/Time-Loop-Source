@@ -80,7 +80,12 @@ func _physics_process(delta: float) -> void:
 		if $CollisionCheck.get_collider() is RigidBody3D:
 			$CollisionCheck.get_collider().mass = 10
 			$CollisionCheck.get_collider().linear_velocity.y = 0
-			$CollisionCheck.get_collider().linear_velocity.x = linear_velocity.x
+			
+			if rotation.y == 90 && dir == 1:
+				$CollisionCheck.get_collider().linear_velocity.x = linear_velocity.x
+				
+			elif  rotation.y == -90 && dir == -1:
+				$CollisionCheck.get_collider().linear_velocity.x = linear_velocity.x	
 			# resetting is done in the script for the crate itself
 	
 	else:
