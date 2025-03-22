@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 	
 	if inputaxis > 0:
 		dir = 1
-		rotation.y = deg_to_rad(90)
+		rotation.y = lerp(rotation.y, deg_to_rad(90), 0.3)
 		if isGrounded:
 			get_child(3).get_child(1).play("RUN") #gets the GIC Player then gets its Animation player
 		else:
@@ -30,7 +30,8 @@ func _physics_process(delta: float) -> void:
 			
 	elif inputaxis < 0:
 		dir = -1
-		rotation.y = deg_to_rad(-90)
+		rotation.y = lerp(rotation.y, deg_to_rad(-90), 0.3)
+
 		if isGrounded:
 			get_child(3).get_child(1).play("RUN")
 		else:
@@ -38,7 +39,8 @@ func _physics_process(delta: float) -> void:
 			
 	else:
 		dir = 0
-		rotation.y = 0
+		rotation.y = lerp(rotation.y, deg_to_rad(0), 0.3)
+
 		if isGrounded:
 			get_child(3).get_child(1).play("IDLE")
 		else:
@@ -102,6 +104,9 @@ func push():
 	
 	# Show the PUSH arms
 	get_child(3).get_child(2).visible = true
+	
+	# Make the animation faster to show that work is done
+	get_child(3).get_child(1).speed_scale = 7
 
 
 func dontpush():
@@ -115,6 +120,8 @@ func dontpush():
 	
 	# Hide the PUSH arms
 	get_child(3).get_child(2).visible = false
+	
+	get_child(3).get_child(1).speed_scale = 4.5
 
 
 func _on_coyote_timer_timeout() -> void:
