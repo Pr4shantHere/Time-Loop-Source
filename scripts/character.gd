@@ -2,7 +2,7 @@ extends RigidBody3D
 
 @export var SPEED = 300
 @export var JUMPSPEED = 500
-@export var COYOTETIMER = 0.3
+@export var COYOTETIMER = 0.1
 
 var dir : int = 0
 var canJump : bool
@@ -13,6 +13,7 @@ var canCoyoteJump : bool
 
 func _ready() -> void:
 	jumpCount = 0
+	canCoyoteJump = false
 	dontpush()
 	$CoyoteTimer.wait_time = COYOTETIMER
 
@@ -60,6 +61,7 @@ func _physics_process(delta: float) -> void:
 		gravity_scale = lerpf(2,4,1.5)
 	elif linear_velocity.y > 0:
 		gravity_scale = 3
+		jumpCount = 1
 	
 	if $JumpBufferingCheck.is_colliding():
 		jumpInputCheck = true
@@ -71,10 +73,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		dontpush()
 	
-	if round(linear_velocity).y < 0 && jumpCount == 0:
+	if round(linear_velocity).y < 0 && jumpCount == 0 && round(linear_velocity.y) > -10:
 		canCoyoteJump = true
 		$CoyoteTimer.start()
-		
+
 
 func _input(event: InputEvent) -> void:
 	if jumpInputCheck == true or canCoyoteJump == true:
