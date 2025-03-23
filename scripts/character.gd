@@ -6,6 +6,8 @@ extends RigidBody3D
 
 @export var LOOPTIMER = 15
 
+@export var canReset : bool = true
+
 var hasOrb : bool = false
 
 
@@ -116,7 +118,7 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("Jump"):
 			canJump = true 
 			
-	if event.is_action_pressed("Reset"):
+	if event.is_action_pressed("Reset") && canReset:
 		get_tree().reload_current_scene()
 
 func Jump(delta):

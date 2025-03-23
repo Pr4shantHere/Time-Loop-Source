@@ -87,13 +87,16 @@ sceneToLoad = "blue"
 
 [node name="Door Diamond" parent="Level/Doors" index="2" instance=ExtResource("7_c13wt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.0385, 11.973, 0)
+sceneToLoad = "diamond"
 
 [node name="Door Orange" parent="Level/Doors" index="3" instance=ExtResource("8_jtk2o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56, 12.0758, 0)
+sceneToLoad = "orange"
 
 [node name="Character" parent="." index="2" instance=ExtResource("6_j8ib7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.11026, 0.866412)
 LOOPTIMER = 1000
+canReset = false
 
 [node name="Camera" parent="." index="3" instance=ExtResource("7_6bi6u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.87664, 15.8664)
