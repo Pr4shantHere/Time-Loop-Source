@@ -1,5 +1,7 @@
 extends MeshInstance3D
 
+var stream = load("res://audios/credit song.mp3")
+
 func _ready() -> void:
 	pass
 
@@ -15,6 +17,7 @@ func _process(delta: float) -> void:
 
 	if Global.red && Global.blue && Global.orange && Global.diamond:
 		$"../Credits".visible = true
+		AudioPlayer.stream = stream
 	else:
 		$"../Credits".visible = false
 		

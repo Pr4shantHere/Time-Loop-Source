@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bmlf6w8lahrfu"]
+[gd_scene load_steps=39 format=3 uid="uid://bmlf6w8lahrfu"]
 
 [ext_resource type="PackedScene" uid="uid://c70cn6y48w07a" path="res://scenes/root.tscn" id="1_pgjjs"]
 [ext_resource type="MeshLibrary" uid="uid://6gm5w8lhpv0m" path="res://tiles.tres" id="2_1nvso"]
@@ -18,6 +18,56 @@
 [ext_resource type="ArrayMesh" uid="uid://cqvbebdm3nmop" path="res://assets/Orbs/Blue Orb.obj" id="16_qfvu4"]
 [ext_resource type="ArrayMesh" uid="uid://bw7nrh8olw246" path="res://assets/Orbs/Diamond Orb.obj" id="17_twuju"]
 [ext_resource type="FontFile" uid="uid://j62xhpm2tnhp" path="res://scenes/marspolice.ttf" id="18_qfvu4"]
+[ext_resource type="ArrayMesh" uid="uid://nocplxlro8j1" path="res://assets/Orbs/Outline Orb.obj" id="18_twuju"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_twuju"]
+size = Vector3(12.1816, 4.08008, 2.55371)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aox1m"]
+size = Vector3(17.5421, 18.9233, 2.55371)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hp05y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_twuju"]
+emission_enabled = true
+emission = Color(0.203922, 0.196078, 0.180392, 1)
+
+[sub_resource type="Animation" id="Animation_b05li"]
+resource_name = "bg"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.98),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 3.14159)]
+}
+
+[sub_resource type="Animation" id="Animation_p8nh0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ys67x"]
+_data = {
+&"RESET": SubResource("Animation_p8nh0"),
+&"bg": SubResource("Animation_b05li")
+}
 
 [sub_resource type="Environment" id="Environment_c13wt"]
 background_mode = 1
@@ -47,6 +97,22 @@ emission_enabled = true
 emission = Color(1, 1, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g1tib"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aox1m"]
+emission_enabled = true
+emission = Color(0.34902, 0.172549, 0.0431373, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hp05y"]
+emission_enabled = true
+emission = Color(0.164706, 0.0156863, 0.027451, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3i1d"]
+emission_enabled = true
+emission = Color(0.121569, 0.14902, 0.203922, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdrmf"]
+emission_enabled = true
+emission = Color(0.0139086, 0.135268, 0.194147, 1)
 
 [node name="Roots" instance=ExtResource("1_pgjjs")]
 
@@ -112,6 +178,20 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -55, 9.91341, 0)
 [node name="diamddoor" parent="Level/Doors" index="3" instance=ExtResource("8_qfvu4")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 55.295, 9.913, 0)
 
+[node name="CollisionFix" type="Node3D" parent="Level" index="3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/CollisionFix" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.10251)
+shape = SubResource("BoxShape3D_twuju")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Level/CollisionFix" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.571, -11.2067, 1.10251)
+shape = SubResource("BoxShape3D_aox1m")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Level/CollisionFix" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6271, -11.2067, 1.10251)
+shape = SubResource("BoxShape3D_aox1m")
+
 [node name="Character" parent="." index="2" instance=ExtResource("9_twuju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.11026, 0.866412)
 LOOPTIMER = 1000
@@ -119,6 +199,196 @@ canReset = false
 
 [node name="Camera" parent="." index="3" instance=ExtResource("10_aox1m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.87664, 15.8664)
+
+[node name="BG" type="Node3D" parent="Camera" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -17)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera/BG" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Camera/BG" index="1"]
+transform = Transform3D(1.23506, 6.87621e-08, 1.57309, 1.57309, -5.39862e-08, -1.23506, 0, 2, -8.74228e-08, 10, 5, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Camera/BG" index="2"]
+transform = Transform3D(-0.901973, 7.80275e-08, 1.78506, 1.78506, 3.94265e-08, 0.901973, 0, 2, -8.74228e-08, 10, -8.50552, -13.4333)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Camera/BG" index="3"]
+transform = Transform3D(-0.151433, -4.32073e-08, -0.988467, -0.988467, 6.61936e-09, 0.151433, 0, 1, -4.37114e-08, -5.98956, 5.24433, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Camera/BG" index="4"]
+transform = Transform3D(1.36792, -6.37765e-08, -1.45904, -1.45904, -5.97938e-08, -1.36792, 0, 2, -8.74228e-08, -2.56156, -5.39751, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Camera/BG" index="5"]
+transform = Transform3D(1.90106, 2.71558e-08, 0.621253, 0.621253, -8.30981e-08, -1.90106, 0, 2, -8.74228e-08, -15.9113, -3.35233, -13.4333)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Camera/BG" index="6"]
+transform = Transform3D(0.92511, -1.65971e-08, -0.379698, -0.379698, -4.04379e-08, -0.92511, -5.37999e-16, 1, -4.37114e-08, 4.7145, 13.3523, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Camera/BG" index="7"]
+transform = Transform3D(1.73987, 4.31141e-08, 0.986336, 0.986336, -7.60521e-08, -1.73987, 0, 2, -8.74228e-08, 15.8641, 14.1809, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Camera/BG" index="8"]
+transform = Transform3D(-0.15664, 8.71542e-08, 1.99386, 1.99386, 6.84695e-09, 0.15664, 1.68848e-15, 2, -8.74228e-08, 10.7361, 1.6868, -13.4333)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Camera/BG" index="9"]
+transform = Transform3D(-0.946351, -1.4125e-08, -0.323141, -0.323141, 4.13663e-08, 0.946351, 0, 1, -4.37114e-08, -22.143, 5.76706, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Camera/BG" index="10"]
+transform = Transform3D(-0.660469, -8.25183e-08, -1.8878, -1.8878, 2.887e-08, 0.660469, 0, 2, -8.74228e-08, -29.9908, -2.19611, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Camera/BG" index="11"]
+transform = Transform3D(1.43041, -6.11011e-08, -1.39783, -1.39783, -6.25252e-08, -1.43041, 0, 2, -8.74228e-08, -34.355, 10.5848, -13.4333)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Camera/BG" index="12"]
+transform = Transform3D(-0.176105, 4.30282e-08, 0.984371, 0.984371, 7.69781e-09, 0.176105, -5.37999e-16, 1, -4.37114e-08, -14.7801, 2.73956, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Camera/BG" index="13"]
+transform = Transform3D(-1.76601, 4.10331e-08, 0.938728, 0.938728, 7.71947e-08, 1.76601, 0, 2, -8.74228e-08, -21.463, 11.7027, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Camera/BG" index="14"]
+transform = Transform3D(-1.59832, -5.25514e-08, -1.20224, -1.20224, 6.98648e-08, 1.59832, 1.68848e-15, 2, -8.74228e-08, -8.16858, 14.0811, -13.4333)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Camera/BG" index="15"]
+transform = Transform3D(-0.998175, 2.63957e-09, 0.0603866, 0.0603866, 4.36316e-08, 0.998175, -5.37999e-16, 1, -4.37114e-08, -22.2899, -8.39237, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Camera/BG" index="16"]
+transform = Transform3D(-1.3278, -6.53766e-08, -1.49564, -1.49564, 5.804e-08, 1.3278, 3.50417e-15, 2, -8.74228e-08, -32.5736, -12.7794, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Camera/BG" index="17"]
+transform = Transform3D(0.792533, -8.0266e-08, -1.83627, -1.83627, -3.46427e-08, -0.792533, 1.68848e-15, 2, -8.74228e-08, -31.758, 0.70149, -13.4333)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Camera/BG" index="18"]
+transform = Transform3D(-0.746928, -2.90639e-08, -0.664904, -0.664904, 3.26493e-08, 0.746928, 0, 1, -4.37114e-08, 28.2449, -2.73234, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Camera/BG" index="19"]
+transform = Transform3D(0.123456, -8.72561e-08, -1.99619, -1.99619, -5.39642e-09, -0.123456, 0, 2, -8.74228e-08, 24.1001, -13.116, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="Camera/BG" index="20"]
+transform = Transform3D(1.8606, -3.20661e-08, -0.733587, -0.733587, -8.13296e-08, -1.8606, 0, 2, -8.74228e-08, 15.1202, -3.02837, -13.4333)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="Camera/BG" index="21"]
+transform = Transform3D(-0.544127, 3.6674e-08, 0.839003, 0.839003, 2.37845e-08, 0.544127, -5.37999e-16, 1, -4.37114e-08, 36.2056, -2.66699, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="Camera/BG" index="22"]
+transform = Transform3D(-1.99186, 7.8793e-09, 0.180257, 0.180257, 8.7067e-08, 1.99186, 0, 2, -8.74228e-08, 26.5693, 3.00241, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D24" type="MeshInstance3D" parent="Camera/BG" index="23"]
+transform = Transform3D(-1.00688, -7.55358e-08, -1.72806, -1.72806, 4.40123e-08, 1.00688, 1.68848e-15, 2, -8.74228e-08, 37.9005, 10.3511, -13.4333)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D25" type="MeshInstance3D" parent="Camera/BG" index="24"]
+transform = Transform3D(-0.943454, -1.44904e-08, -0.331503, -0.331503, 4.12397e-08, 0.943454, -5.37999e-16, 1, -4.37114e-08, 33.6015, -15.8403, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D26" type="MeshInstance3D" parent="Camera/BG" index="25"]
+transform = Transform3D(-0.643739, -8.27705e-08, -1.89357, -1.89357, 2.81387e-08, 0.643739, 3.50417e-15, 2, -8.74228e-08, 25.8245, -23.8726, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D27" type="MeshInstance3D" parent="Camera/BG" index="26"]
+transform = Transform3D(1.44272, -6.05454e-08, -1.38512, -1.38512, -6.30634e-08, -1.44272, 1.68848e-15, 2, -8.74228e-08, 21.3474, -11.1307, -13.4333)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D28" type="MeshInstance3D" parent="Camera/BG" index="27"]
+transform = Transform3D(0.491998, 3.8055e-08, 0.870596, 0.870596, -2.15059e-08, -0.491998, 0, 1, -4.37114e-08, 48.6186, 7.68305, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D29" type="MeshInstance3D" parent="Camera/BG" index="28"]
+transform = Transform3D(-0.761882, 8.08311e-08, 1.8492, 1.8492, 3.33029e-08, 0.761882, 0, 2, -8.74228e-08, 49.1856, 18.849, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D30" type="MeshInstance3D" parent="Camera/BG" index="29"]
+transform = Transform3D(-1.99784, 4.06483e-09, 0.0929928, 0.0929928, 8.73282e-08, 1.99784, 0, 2, -8.74228e-08, 60.9435, 12.2043, -13.4333)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D31" type="MeshInstance3D" parent="Camera/BG" index="30"]
+transform = Transform3D(0.786051, -2.70207e-08, -0.618162, -0.618162, -3.43594e-08, -0.786051, 3.36298e-16, 1, -4.37114e-08, 41.1061, 5.04877, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D32" type="MeshInstance3D" parent="Camera/BG" index="31"]
+transform = Transform3D(1.94325, 2.06783e-08, 0.473065, 0.473065, -8.4942e-08, -1.94325, 0, 2, -8.74228e-08, 52.0574, 2.79741, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D33" type="MeshInstance3D" parent="Camera/BG" index="32"]
+transform = Transform3D(0.394459, 8.57056e-08, 1.96071, 1.96071, -1.72424e-08, -0.394459, 4.52767e-15, 2, -8.74228e-08, 43.7088, -7.81862, -13.4333)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D34" type="MeshInstance3D" parent="Camera/BG" index="33"]
+transform = Transform3D(0.785717, 2.70393e-08, 0.618587, 0.618587, -3.43448e-08, -0.785717, -5.37999e-16, 1, -4.37114e-08, 39.3137, 18.3568, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D35" type="MeshInstance3D" parent="Camera/BG" index="34"]
+transform = Transform3D(-0.00268751, 8.74227e-08, 2, 2, 1.17481e-10, 0.00268751, 3.50417e-15, 2, -8.74228e-08, 44.0779, 28.4712, 0)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="MeshInstance3D36" type="MeshInstance3D" parent="Camera/BG" index="35"]
+transform = Transform3D(-1.81291, 3.69188e-08, 0.844604, 0.844604, 7.92448e-08, 1.81291, 1.68848e-15, 2, -8.74228e-08, 52.4323, 17.8597, -13.4333)
+mesh = SubResource("PlaneMesh_hp05y")
+surface_material_override/0 = SubResource("StandardMaterial3D_twuju")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera/BG" index="36"]
+libraries = {
+&"": SubResource("AnimationLibrary_ys67x")
+}
+autoplay = "bg"
+speed_scale = 0.01
 
 [node name="TimerModel" parent="." index="4"]
 visible = false
@@ -253,7 +523,30 @@ surface_material_override/0 = SubResource("StandardMaterial3D_vnh3v")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HOLDER/Diamond2/Meshes for Anim/Area3D" index="2"]
 shape = SubResource("BoxShape3D_g1tib")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HOLDER" index="4"]
+
+[node name="Orange" type="MeshInstance3D" parent="HOLDER" index="5"]
+transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, -0.469355, 8.72968, 0)
+mesh = ExtResource("18_twuju")
+surface_material_override/0 = SubResource("StandardMaterial3D_aox1m")
+
+[node name="Red" type="MeshInstance3D" parent="HOLDER" index="6"]
+transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, -0.155339, 8.72968, 0)
+mesh = ExtResource("18_twuju")
+surface_material_override/0 = SubResource("StandardMaterial3D_hp05y")
+
+[node name="Blue" type="MeshInstance3D" parent="HOLDER" index="7"]
+transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, 0.148965, 8.72968, 0)
+mesh = ExtResource("18_twuju")
+surface_material_override/0 = SubResource("StandardMaterial3D_g3i1d")
+
+[node name="Diamond" type="MeshInstance3D" parent="HOLDER" index="8"]
+transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, 0.456506, 8.72968, 0)
+mesh = ExtResource("18_twuju")
+surface_material_override/0 = SubResource("StandardMaterial3D_cdrmf")
+
 [node name="Credits" type="Node3D" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.80028, 0)
 
 [node name="THE" type="Label3D" parent="Credits" index="0"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -1, 0.348186, -2.45)
