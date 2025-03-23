@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://ifra832pluok"]
+
+[ext_resource type="Script" uid="uid://ctr0emofntw4g" path="res://scenes/doororange.gd" id="1_xp3sn"]
+[ext_resource type="ArrayMesh" uid="uid://c7rgktivyaedx" path="res://assets/Door Orange.obj" id="2_gtgqk"]
+[ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="2_xp3sn"]
+[ext_resource type="PackedScene" uid="uid://qmjdtcroptq3" path="res://scenes/orange_orb.tscn" id="4_gtgqk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gtgqk"]
+size = Vector3(1.37671, 2.4223, 2.84265)
+
+[node name="doororange" type="Area3D"]
+script = ExtResource("1_xp3sn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_gtgqk")
+surface_material_override/0 = ExtResource("2_xp3sn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.244781, 0.921326)
+shape = SubResource("BoxShape3D_gtgqk")
+
+[node name="Orange Orb" parent="." instance=ExtResource("4_gtgqk")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 2.247, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

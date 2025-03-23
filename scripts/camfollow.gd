@@ -20,3 +20,6 @@ func _process(delta: float) -> void:
 
 func _on_waitbeforeswitching_timeout() -> void:
 	canChange = true
+	
+	if get_owner().get_node("Character").hasOrb:
+		pass

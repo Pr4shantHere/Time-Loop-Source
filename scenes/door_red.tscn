@@ -1,126 +1,23 @@
-[gd_scene load_steps=12 format=3 uid="uid://c53f7drecsxyo"]
+[gd_scene load_steps=5 format=3 uid="uid://c53f7drecsxyo"]
 
 [ext_resource type="Script" uid="uid://dsj73ek31x88m" path="res://scripts/changescene.gd" id="1_fnvpx"]
-[ext_resource type="ArrayMesh" uid="uid://odmo80ykq7pl" path="res://assets/Door Red.obj" id="1_yun78"]
 [ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="2_axa0d"]
-[ext_resource type="ArrayMesh" uid="uid://bg6p1i8pl4xiy" path="res://assets/Orbs/Red Orb.obj" id="4_cbkx0"]
-[ext_resource type="Texture2D" uid="uid://dfujlsnamjvcu" path="res://BEST COLOR PALETTE (Blurred).png" id="5_ffmpq"]
+[ext_resource type="ArrayMesh" uid="uid://cc6wm8di5dbe1" path="res://assets/Door White.obj" id="2_cbkx0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yun78"]
 size = Vector3(4.58887, 9.50873, 8.48303)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vnh3v"]
-cull_mode = 1
-albedo_texture = ExtResource("5_ffmpq")
-metallic_specular = 0.0
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_g1tib"]
-size = Vector3(3.36035, 7.98047, 6.36035)
-
-[sub_resource type="Animation" id="Animation_g6cbt"]
-resource_name = "Orb"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, -0.5, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0), Vector3(0, -0.5, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.785398, 0), Vector3(0, 1.5708, 0), Vector3(0, 2.35619, 0), Vector3(0, 3.14159, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_vnh3v"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fguff"]
-_data = {
-&"Orb": SubResource("Animation_g6cbt"),
-&"RESET": SubResource("Animation_vnh3v")
-}
 
 [node name="Door Red" type="Area3D"]
 script = ExtResource("1_fnvpx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
-mesh = ExtResource("1_yun78")
+mesh = ExtResource("2_cbkx0")
 surface_material_override/0 = ExtResource("2_axa0d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.583832, 4.08427)
 shape = SubResource("BoxShape3D_yun78")
 
-[node name="Red Orb" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
-
-[node name="Meshes for Anim" type="Node3D" parent="Red Orb"]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
-
-[node name="Area3D" type="Area3D" parent="Red Orb/Meshes for Anim"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Red Orb/Meshes for Anim/Area3D"]
-mesh = ExtResource("4_cbkx0")
-skeleton = NodePath("../../../..")
-surface_material_override/0 = ExtResource("2_axa0d")
-
-[node name="Outline" type="MeshInstance3D" parent="Red Orb/Meshes for Anim/Area3D"]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
-mesh = ExtResource("4_cbkx0")
-skeleton = NodePath("../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_vnh3v")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Red Orb/Meshes for Anim/Area3D"]
-shape = SubResource("BoxShape3D_g1tib")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Red Orb/Meshes for Anim"]
-libraries = {
-&"": SubResource("AnimationLibrary_fguff")
-}
-autoplay = "Orb"
-speed_scale = 0.5
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
-[connection signal="body_entered" from="Red Orb/Meshes for Anim/Area3D" to="Red Orb" method="_on_area_3d_body_entered"]

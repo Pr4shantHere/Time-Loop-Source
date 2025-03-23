@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GICSubmission"
-run/main_scene="uid://2v6vel471gio"
+run/main_scene="uid://bmlf6w8lahrfu"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

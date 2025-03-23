@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://urjbenwm25j2"]
+
+[ext_resource type="ArrayMesh" uid="uid://cm24r23da34iq" path="res://assets/Door Blue.obj" id="1_fskrd"]
+[ext_resource type="Script" uid="uid://buhlgwk6m53c6" path="res://bluedoor.gd" id="1_wx763"]
+[ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="2_wx763"]
+[ext_resource type="PackedScene" uid="uid://btmljx2xnnhsu" path="res://scenes/blue_orb.tscn" id="3_s6uc0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xf4c5"]
+size = Vector3(1.37671, 2.4223, 2.84265)
+
+[node name="bluedoor" type="Area3D"]
+script = ExtResource("1_wx763")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_fskrd")
+surface_material_override/0 = ExtResource("2_wx763")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.244781, 0.921326)
+shape = SubResource("BoxShape3D_xf4c5")
+
+[node name="Blue Orb" parent="." instance=ExtResource("3_s6uc0")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 2.24701, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

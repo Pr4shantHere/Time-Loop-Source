@@ -1,0 +1,104 @@
+[gd_scene load_steps=10 format=3 uid="uid://qmjdtcroptq3"]
+
+[ext_resource type="ArrayMesh" uid="uid://uxcqirkda7kv" path="res://assets/Orbs/Orange Orb.obj" id="1_62cx5"]
+[ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="2_gehd2"]
+[ext_resource type="ArrayMesh" uid="uid://bg6p1i8pl4xiy" path="res://assets/Orbs/Red Orb.obj" id="3_awn3c"]
+[ext_resource type="Texture2D" uid="uid://dfujlsnamjvcu" path="res://BEST COLOR PALETTE (Blurred).png" id="4_rn7q6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vnh3v"]
+cull_mode = 1
+albedo_texture = ExtResource("4_rn7q6")
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g1tib"]
+
+[sub_resource type="Animation" id="Animation_g6cbt"]
+resource_name = "Orb"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.5, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0), Vector3(0, -0.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.785398, 0), Vector3(0, 1.5708, 0), Vector3(0, 2.35619, 0), Vector3(0, 3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vnh3v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fguff"]
+_data = {
+&"Orb": SubResource("Animation_g6cbt"),
+&"RESET": SubResource("Animation_vnh3v")
+}
+
+[node name="Orange Orb" type="Node3D"]
+
+[node name="Meshes for Anim" type="Node3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="Meshes for Anim"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Meshes for Anim/Area3D"]
+mesh = ExtResource("1_62cx5")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = ExtResource("2_gehd2")
+
+[node name="Outline" type="MeshInstance3D" parent="Meshes for Anim/Area3D"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+mesh = ExtResource("3_awn3c")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_vnh3v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshes for Anim/Area3D"]
+shape = SubResource("BoxShape3D_g1tib")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Meshes for Anim"]
+libraries = {
+&"": SubResource("AnimationLibrary_fguff")
+}
+autoplay = "Orb"
+speed_scale = 0.5
