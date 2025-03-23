@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj7jlin0cgjp1"]
+
+[ext_resource type="ArrayMesh" uid="uid://dfuyik48kvyu7" path="res://assets/Lever ON.obj" id="1_0vwrv"]
+[ext_resource type="Script" uid="uid://vlyegf11iuk8" path="res://scenes/lever.gd" id="1_hd7rw"]
+[ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="2_cu1kr"]
+[ext_resource type="ArrayMesh" uid="uid://b312i81cco54o" path="res://assets/Lever OFF.obj" id="3_cu1kr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cu1kr"]
+size = Vector3(3.37695, 3.51904, 6.21777)
+
+[node name="Lever" type="Area3D"]
+script = ExtResource("1_hd7rw")
+
+[node name="ON" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = ExtResource("1_0vwrv")
+surface_material_override/0 = ExtResource("2_cu1kr")
+
+[node name="OFF" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = ExtResource("3_cu1kr")
+surface_material_override/0 = ExtResource("2_cu1kr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25952, 0)
+shape = SubResource("BoxShape3D_cu1kr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

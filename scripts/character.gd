@@ -71,7 +71,7 @@ func _physics_process(delta: float) -> void:
 	if isGrounded:
 		gravity_scale = 1
 	elif linear_velocity.y < 0:
-		gravity_scale = lerpf(2,4,1.5)
+		gravity_scale = 8
 	elif linear_velocity.y > 0:
 		gravity_scale = 3
 		jumpCount = 1
@@ -82,7 +82,8 @@ func _physics_process(delta: float) -> void:
 		jumpInputCheck = false
 		
 	if $CollisionCheck.is_colliding() && dir != 0:
-		push()
+		if $CollisionCheck.get_collider() is not Area3D:
+			push()
 		
 		if $CollisionCheck.get_collider() is RigidBody3D:
 			$CollisionCheck.get_collider().mass = 10

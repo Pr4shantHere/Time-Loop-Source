@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://orb47m8ioknd"]
+[gd_scene load_steps=16 format=3 uid="uid://orb47m8ioknd"]
 
 [ext_resource type="PackedScene" uid="uid://c70cn6y48w07a" path="res://scenes/root.tscn" id="1_s51y3"]
 [ext_resource type="PackedScene" uid="uid://dkwh0lkm5awh8" path="res://scenes/door_diamond.tscn" id="2_s51y3"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://c5vdidva7u6d1" path="res://scenes/camera.tscn" id="4_s4sc6"]
 [ext_resource type="PackedScene" uid="uid://hfnnqmhrfnao" path="res://scenes/red_orb.tscn" id="5_dbq5h"]
 [ext_resource type="PackedScene" uid="uid://olo0q7pcy4vi" path="res://scenes/spikes.tscn" id="5_s4sc6"]
+[ext_resource type="PackedScene" uid="uid://bj7jlin0cgjp1" path="res://scenes/Lever.tscn" id="6_dbq5h"]
+[ext_resource type="PackedScene" uid="uid://dfwrtg20nm80v" path="res://scenes/crate.tscn" id="7_2utus"]
+[ext_resource type="ArrayMesh" uid="uid://bpl1vvwcaxwmk" path="res://assets/CRANE.obj" id="8_vnw3r"]
 
 [sub_resource type="Environment" id="Environment_i33tp"]
 background_mode = 1
@@ -175,6 +178,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.2749, -6.57596, 0)
 
 [node name="spikes8" parent="Level/Spikes5" index="7" instance=ExtResource("5_s4sc6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.2749, -6.57596, 0)
+
+[node name="Lever" parent="Level" index="7" node_paths=PackedStringArray("objToDrop") instance=ExtResource("6_dbq5h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.10549, -1.42566, 0)
+objToDrop = NodePath("../Crate")
+
+[node name="Crate" parent="Level" index="8" instance=ExtResource("7_2utus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.7057, 6.31957, 0)
+gravity_scale = 0.0
+
+[node name="Crane" type="MeshInstance3D" parent="Level" index="9"]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 21.6887, 7.54367, 0.0207548)
+mesh = ExtResource("8_vnw3r")
 
 [node name="Character" parent="." index="2" instance=ExtResource("3_ba7ec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.11026, 0.866412)

@@ -12,7 +12,7 @@
 
 [sub_resource type="Environment" id="Environment_60ir3"]
 background_mode = 1
-background_color = Color(0.239419, 0.109804, 0.0207344, 1)
+background_color = Color(0.35057, 0.172093, 0.044715, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6d3x"]
 emission_enabled = true

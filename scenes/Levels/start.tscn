@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://2v6vel471gio"]
+[gd_scene load_steps=22 format=3 uid="uid://2v6vel471gio"]
 
 [ext_resource type="PackedScene" uid="uid://c70cn6y48w07a" path="res://scenes/root.tscn" id="1_tmcrc"]
 [ext_resource type="MeshLibrary" uid="uid://6gm5w8lhpv0m" path="res://tiles.tres" id="2_gay5b"]
@@ -10,10 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://c5vdidva7u6d1" path="res://scenes/camera.tscn" id="7_6bi6u"]
 [ext_resource type="PackedScene" uid="uid://dkwh0lkm5awh8" path="res://scenes/door_diamond.tscn" id="7_c13wt"]
 [ext_resource type="PackedScene" uid="uid://b6khrg4ognp0q" path="res://scenes/door_orange.tscn" id="8_jtk2o"]
+[ext_resource type="ArrayMesh" uid="uid://nocplxlro8j1" path="res://assets/Orbs/Outline Orb.obj" id="9_jtk2o"]
 
 [sub_resource type="Environment" id="Environment_c13wt"]
 background_mode = 1
-background_color = Color(0.156036, 0.1477, 0.143396, 1)
+background_color = Color(0.146729, 0.138749, 0.134629, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6d3x"]
 emission_enabled = true
@@ -24,6 +25,28 @@ emission = Color(0.758077, 0.107873, 0, 1)
 [sub_resource type="Curve" id="Curve_j13p3"]
 _data = [Vector2(0.00564972, 0.996873), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.71466, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_c13wt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5k77q"]
+emission_enabled = true
+emission = Color(0.646029, 0.646029, 0.646029, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tmcrc"]
+emission_enabled = true
+emission = Color(0.34902, 0.172549, 0.0431373, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gay5b"]
+emission_enabled = true
+emission = Color(0.164706, 0.0156863, 0.027451, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8hqp"]
+emission_enabled = true
+emission = Color(0.121569, 0.14902, 0.203922, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jtk2o"]
+emission_enabled = true
+emission = Color(0.0139086, 0.135268, 0.194147, 1)
 
 [node name="Root" instance=ExtResource("1_tmcrc")]
 
@@ -134,3 +157,29 @@ scale_amount_min = 0.4
 scale_amount_max = 0.8
 scale_amount_curve = SubResource("Curve_j13p3")
 color = Color(1, 0.06, 0.06, 1)
+
+[node name="HOLDER" type="MeshInstance3D" parent="." index="7"]
+transform = Transform3D(10.295, 0, 0, 0, 0.217704, 0, 0, 0, 1, 0, 4, -1.05185)
+mesh = SubResource("BoxMesh_c13wt")
+skeleton = NodePath("../Level")
+surface_material_override/0 = SubResource("StandardMaterial3D_5k77q")
+
+[node name="Orange" type="MeshInstance3D" parent="HOLDER" index="0"]
+transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, -0.469355, 8.72968, 0)
+mesh = ExtResource("9_jtk2o")
+surface_material_override/0 = SubResource("StandardMaterial3D_tmcrc")
+
+[node name="Red" type="MeshInstance3D" parent="HOLDER" index="1"]
+transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, -0.155339, 8.72968, 0)
+mesh = ExtResource("9_jtk2o")
+surface_material_override/0 = SubResource("StandardMaterial3D_gay5b")
+
+[node name="Blue" type="MeshInstance3D" parent="HOLDER" index="2"]
+transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, 0.148965, 8.72968, 0)
+mesh = ExtResource("9_jtk2o")
+surface_material_override/0 = SubResource("StandardMaterial3D_a8hqp")
+
+[node name="Diamond" type="MeshInstance3D" parent="HOLDER" index="3"]
+transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, 0.456506, 8.72968, 0)
+mesh = ExtResource("9_jtk2o")
+surface_material_override/0 = SubResource("StandardMaterial3D_jtk2o")
