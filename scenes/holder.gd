@@ -1,5 +1,7 @@
 extends MeshInstance3D
 
+func _ready() -> void:
+	pass
 
 func _process(delta: float) -> void:
 	if Global.red:
@@ -10,3 +12,6 @@ func _process(delta: float) -> void:
 		$Orange2.visible = true
 	if Global.diamond:
 		$Diamond2.visible = true
+
+	if Global.red && Global.blue && Global.orange && Global.diamond:
+		pass

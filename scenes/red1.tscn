@@ -87,7 +87,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9555, 1.34879, 1.00468)
 
 [node name="Character" parent="." index="2" instance=ExtResource("7_1dwj8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.11026, 0.866412)
-LOOPTIMER = 10
 
 [node name="Camera" parent="." index="3" instance=ExtResource("8_m7gjt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.87664, 15.8664)

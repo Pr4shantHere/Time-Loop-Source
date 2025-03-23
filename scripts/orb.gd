@@ -39,23 +39,13 @@ func _process(delta: float) -> void:
 			if isDiamond:
 				Global.diamond = true
 		
+		else:
+			return
+		
 		if get_owner().reset == true && isResetable:
 			position = pos_start
 			get_owner().get_node("Character").hasOrb = false
-		
-		if get_owner().get_node("Character").isDead && !get_owner().get_node("Character").hasOrb:
-			position = pos_start
-			get_owner().get_node("Character").hasOrb = false
-			if isRed:
-				Global.red = false
-			elif isBlue:
-				Global.blue = false
-			elif isOrange:
-				Global.orange = false
-			elif isDiamond:
-				Global.diamond = false
-	
- 	
+			
 func followw(d):
 	position.x = lerpf(position.x, get_owner().get_node("Character").get_node("FollowTarget").global_position.x, .06)
 	position.y = lerpf(position.y, get_owner().get_node("Character").get_node("FollowTarget").global_position.y, .06)
@@ -63,4 +53,4 @@ func followw(d):
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.name == "Character":
 		body.hasOrb = true
- 
+		$AudioStreamPlayer.play()

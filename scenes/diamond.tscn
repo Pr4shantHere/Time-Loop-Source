@@ -196,7 +196,7 @@ sceneToLoad = "start"
 
 [node name="Character" parent="." index="2" instance=ExtResource("10_e8owx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.11026, 0.866412)
-LOOPTIMER = 5
+LOOPTIMER = 75
 
 [node name="Camera" parent="." index="3" instance=ExtResource("11_vfm8p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.87664, 15.8664)

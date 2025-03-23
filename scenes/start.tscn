@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bmlf6w8lahrfu"]
+[gd_scene load_steps=26 format=3 uid="uid://bmlf6w8lahrfu"]
 
 [ext_resource type="PackedScene" uid="uid://c70cn6y48w07a" path="res://scenes/root.tscn" id="1_pgjjs"]
 [ext_resource type="MeshLibrary" uid="uid://6gm5w8lhpv0m" path="res://tiles.tres" id="2_1nvso"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://bkge6ci8anka" path="res://scripts/character.tscn" id="9_twuju"]
 [ext_resource type="PackedScene" uid="uid://c5vdidva7u6d1" path="res://scenes/camera.tscn" id="10_aox1m"]
 [ext_resource type="Script" uid="uid://cxjh3krdm45xm" path="res://scenes/holder.gd" id="11_1nvso"]
-[ext_resource type="ArrayMesh" uid="uid://nocplxlro8j1" path="res://assets/Orbs/Outline Orb.obj" id="11_hp05y"]
 [ext_resource type="ArrayMesh" uid="uid://uxcqirkda7kv" path="res://assets/Orbs/Orange Orb.obj" id="12_n0tym"]
 [ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="13_8jfef"]
 [ext_resource type="ArrayMesh" uid="uid://bg6p1i8pl4xiy" path="res://assets/Orbs/Red Orb.obj" id="14_qfvu4"]
@@ -47,23 +46,6 @@ emission_enabled = true
 emission = Color(1, 1, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g1tib"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tmcrc"]
-transparency = 1
-emission_enabled = true
-emission = Color(0.34902, 0.172549, 0.0431373, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gay5b"]
-emission_enabled = true
-emission = Color(0.164706, 0.0156863, 0.027451, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8hqp"]
-emission_enabled = true
-emission = Color(0.121569, 0.14902, 0.203922, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jtk2o"]
-emission_enabled = true
-emission = Color(0.0139086, 0.135268, 0.194147, 1)
 
 [node name="Roots" instance=ExtResource("1_pgjjs")]
 
@@ -189,13 +171,13 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="HOLDER/Orange2/Meshes for Anim/Area3D" index="0"]
 mesh = ExtResource("12_n0tym")
-skeleton = NodePath("../../../../Orange")
+skeleton = NodePath("")
 surface_material_override/0 = ExtResource("13_8jfef")
 
 [node name="Outline" type="MeshInstance3D" parent="HOLDER/Orange2/Meshes for Anim/Area3D" index="1"]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 mesh = ExtResource("14_qfvu4")
-skeleton = NodePath("../../../../Orange")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_vnh3v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HOLDER/Orange2/Meshes for Anim/Area3D" index="2"]
@@ -212,13 +194,13 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="HOLDER/Red2/Meshes for Anim/Area3D" index="0"]
 mesh = ExtResource("14_qfvu4")
-skeleton = NodePath("../../../../Orange")
+skeleton = NodePath("")
 surface_material_override/0 = ExtResource("13_8jfef")
 
 [node name="Outline" type="MeshInstance3D" parent="HOLDER/Red2/Meshes for Anim/Area3D" index="1"]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 mesh = ExtResource("14_qfvu4")
-skeleton = NodePath("../../../../Orange")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_vnh3v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HOLDER/Red2/Meshes for Anim/Area3D" index="2"]
@@ -235,13 +217,13 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="HOLDER/Blue2/Meshes for Anim/Area3D" index="0"]
 mesh = ExtResource("16_qfvu4")
-skeleton = NodePath("../../../../Orange")
+skeleton = NodePath("")
 surface_material_override/0 = ExtResource("13_8jfef")
 
 [node name="Outline" type="MeshInstance3D" parent="HOLDER/Blue2/Meshes for Anim/Area3D" index="1"]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 mesh = ExtResource("14_qfvu4")
-skeleton = NodePath("../../../../Orange")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_vnh3v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HOLDER/Blue2/Meshes for Anim/Area3D" index="2"]
@@ -258,34 +240,14 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="HOLDER/Diamond2/Meshes for Anim/Area3D" index="0"]
 mesh = ExtResource("17_twuju")
-skeleton = NodePath("../../../../Orange")
+skeleton = NodePath("")
 surface_material_override/0 = ExtResource("13_8jfef")
 
 [node name="Outline" type="MeshInstance3D" parent="HOLDER/Diamond2/Meshes for Anim/Area3D" index="1"]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 mesh = ExtResource("14_qfvu4")
-skeleton = NodePath("../../../../Orange")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_vnh3v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HOLDER/Diamond2/Meshes for Anim/Area3D" index="2"]
 shape = SubResource("BoxShape3D_g1tib")
-
-[node name="Orange" type="MeshInstance3D" parent="HOLDER" index="4"]
-transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, -0.469355, 8.72968, 0)
-mesh = ExtResource("11_hp05y")
-surface_material_override/0 = SubResource("StandardMaterial3D_tmcrc")
-
-[node name="Red" type="MeshInstance3D" parent="HOLDER" index="5"]
-transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, -0.155339, 8.72968, 0)
-mesh = ExtResource("11_hp05y")
-surface_material_override/0 = SubResource("StandardMaterial3D_gay5b")
-
-[node name="Blue" type="MeshInstance3D" parent="HOLDER" index="6"]
-transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, 0.148965, 8.72968, 0)
-mesh = ExtResource("11_hp05y")
-surface_material_override/0 = SubResource("StandardMaterial3D_a8hqp")
-
-[node name="Diamond" type="MeshInstance3D" parent="HOLDER" index="7"]
-transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, 0.456506, 8.72968, 0)
-mesh = ExtResource("11_hp05y")
-surface_material_override/0 = SubResource("StandardMaterial3D_jtk2o")

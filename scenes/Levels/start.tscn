@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://2v6vel471gio"]
+[gd_scene load_steps=31 format=3 uid="uid://2v6vel471gio"]
 
 [ext_resource type="PackedScene" uid="uid://c70cn6y48w07a" path="res://scenes/root.tscn" id="1_tmcrc"]
 [ext_resource type="MeshLibrary" uid="uid://6gm5w8lhpv0m" path="res://tiles.tres" id="2_gay5b"]
@@ -11,6 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://ifra832pluok" path="res://scenes/doororange.tscn" id="7_c13wt"]
 [ext_resource type="PackedScene" uid="uid://61j17l51ov03" path="res://scenes/diamddoor.tscn" id="8_jtk2o"]
 [ext_resource type="ArrayMesh" uid="uid://nocplxlro8j1" path="res://assets/Orbs/Outline Orb.obj" id="9_jtk2o"]
+[ext_resource type="Script" uid="uid://cxjh3krdm45xm" path="res://scenes/holder.gd" id="11_tmcrc"]
+[ext_resource type="ArrayMesh" uid="uid://uxcqirkda7kv" path="res://assets/Orbs/Orange Orb.obj" id="13_6bi6u"]
+[ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="14_jwxdg"]
+[ext_resource type="ArrayMesh" uid="uid://bg6p1i8pl4xiy" path="res://assets/Orbs/Red Orb.obj" id="15_gfito"]
+[ext_resource type="Texture2D" uid="uid://dfujlsnamjvcu" path="res://BEST COLOR PALETTE (Blurred).png" id="16_vbfwq"]
+[ext_resource type="ArrayMesh" uid="uid://cqvbebdm3nmop" path="res://assets/Orbs/Blue Orb.obj" id="17_340yb"]
+[ext_resource type="ArrayMesh" uid="uid://bw7nrh8olw246" path="res://assets/Orbs/Diamond Orb.obj" id="18_uoscm"]
 
 [sub_resource type="Environment" id="Environment_c13wt"]
 background_mode = 1
@@ -47,6 +54,15 @@ emission = Color(0.121569, 0.14902, 0.203922, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jtk2o"]
 emission_enabled = true
 emission = Color(0.0139086, 0.135268, 0.194147, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yar1a"]
+cull_mode = 1
+albedo_texture = ExtResource("16_vbfwq")
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f23n8"]
 
 [node name="Root" instance=ExtResource("1_tmcrc")]
 
@@ -159,6 +175,7 @@ transform = Transform3D(10.295, 0, 0, 0, 0.217704, 0, 0, 0, 1, 0, 4, -1.05185)
 mesh = SubResource("BoxMesh_c13wt")
 skeleton = NodePath("../Level")
 surface_material_override/0 = SubResource("StandardMaterial3D_5k77q")
+script = ExtResource("11_tmcrc")
 
 [node name="Orange" type="MeshInstance3D" parent="HOLDER" index="0"]
 transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, -0.469355, 8.72968, 0)
@@ -179,3 +196,95 @@ surface_material_override/0 = SubResource("StandardMaterial3D_a8hqp")
 transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, 0.456506, 8.72968, 0)
 mesh = ExtResource("9_jtk2o")
 surface_material_override/0 = SubResource("StandardMaterial3D_jtk2o")
+
+[node name="Orange2" type="Node3D" parent="HOLDER" index="4"]
+transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, -0.469355, 11.4163, 0)
+visible = false
+
+[node name="Meshes for Anim" type="Node3D" parent="HOLDER/Orange2" index="0"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.5, 0)
+
+[node name="Area3D" type="Area3D" parent="HOLDER/Orange2/Meshes for Anim" index="0"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HOLDER/Orange2/Meshes for Anim/Area3D" index="0"]
+mesh = ExtResource("13_6bi6u")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("14_jwxdg")
+
+[node name="Outline" type="MeshInstance3D" parent="HOLDER/Orange2/Meshes for Anim/Area3D" index="1"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+mesh = ExtResource("15_gfito")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_yar1a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HOLDER/Orange2/Meshes for Anim/Area3D" index="2"]
+shape = SubResource("BoxShape3D_f23n8")
+
+[node name="Red2" type="Node3D" parent="HOLDER" index="5"]
+transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, -0.158713, 11.4163, 0)
+visible = false
+
+[node name="Meshes for Anim" type="Node3D" parent="HOLDER/Red2" index="0"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.5, 0)
+
+[node name="Area3D" type="Area3D" parent="HOLDER/Red2/Meshes for Anim" index="0"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HOLDER/Red2/Meshes for Anim/Area3D" index="0"]
+mesh = ExtResource("15_gfito")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("14_jwxdg")
+
+[node name="Outline" type="MeshInstance3D" parent="HOLDER/Red2/Meshes for Anim/Area3D" index="1"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+mesh = ExtResource("15_gfito")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_yar1a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HOLDER/Red2/Meshes for Anim/Area3D" index="2"]
+shape = SubResource("BoxShape3D_f23n8")
+
+[node name="Blue2" type="Node3D" parent="HOLDER" index="6"]
+transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, 0.150096, 11.4163, 0)
+visible = false
+
+[node name="Meshes for Anim" type="Node3D" parent="HOLDER/Blue2" index="0"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.5, 0)
+
+[node name="Area3D" type="Area3D" parent="HOLDER/Blue2/Meshes for Anim" index="0"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HOLDER/Blue2/Meshes for Anim/Area3D" index="0"]
+mesh = ExtResource("17_340yb")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("14_jwxdg")
+
+[node name="Outline" type="MeshInstance3D" parent="HOLDER/Blue2/Meshes for Anim/Area3D" index="1"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+mesh = ExtResource("15_gfito")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_yar1a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HOLDER/Blue2/Meshes for Anim/Area3D" index="2"]
+shape = SubResource("BoxShape3D_f23n8")
+
+[node name="Diamond2" type="Node3D" parent="HOLDER" index="7"]
+transform = Transform3D(0.131385, 0, 0, 0, 5.3792, 0, 0, 0, 1.06805, 0.457072, 11.4163, 0)
+visible = false
+
+[node name="Meshes for Anim" type="Node3D" parent="HOLDER/Diamond2" index="0"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.5, 0)
+
+[node name="Area3D" type="Area3D" parent="HOLDER/Diamond2/Meshes for Anim" index="0"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HOLDER/Diamond2/Meshes for Anim/Area3D" index="0"]
+mesh = ExtResource("18_uoscm")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("14_jwxdg")
+
+[node name="Outline" type="MeshInstance3D" parent="HOLDER/Diamond2/Meshes for Anim/Area3D" index="1"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+mesh = ExtResource("15_gfito")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_yar1a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HOLDER/Diamond2/Meshes for Anim/Area3D" index="2"]
+shape = SubResource("BoxShape3D_f23n8")

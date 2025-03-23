@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 		$OFF.visible = true
 		$ON.visible = false
 		objToDrop.gravity_scale = 0
+		$AudioStreamPlayer.play()
 
 
 func _on_body_entered(body: Node3D) -> void:
@@ -29,3 +30,4 @@ func Switch():
 	$ON.visible = true
 	$OFF.visible = false
 	objToDrop.gravity_scale = 5
+	$AudioStreamPlayer.play()

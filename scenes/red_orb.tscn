@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://hfnnqmhrfnao"]
+[gd_scene load_steps=11 format=3 uid="uid://hfnnqmhrfnao"]
 
 [ext_resource type="Script" uid="uid://0p678jxmnhno" path="res://scripts/orb.gd" id="1_8ji51"]
 [ext_resource type="ArrayMesh" uid="uid://bg6p1i8pl4xiy" path="res://assets/Orbs/Red Orb.obj" id="1_jigkk"]
 [ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="2_8ji51"]
 [ext_resource type="Texture2D" uid="uid://dfujlsnamjvcu" path="res://BEST COLOR PALETTE (Blurred).png" id="3_frsn5"]
+[ext_resource type="AudioStream" uid="uid://cxjkrvi7q0cjb" path="res://audios/collect2.mp3" id="5_frsn5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vnh3v"]
 cull_mode = 1
@@ -104,5 +105,8 @@ libraries = {
 }
 autoplay = "Orb"
 speed_scale = 0.5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_frsn5")
 
 [connection signal="body_entered" from="Meshes for Anim/Area3D" to="." method="_on_area_3d_body_entered"]

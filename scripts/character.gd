@@ -27,7 +27,6 @@ func _ready() -> void:
 	dontpush()
 	isGrounded = true
 	$CoyoteTimer.wait_time = COYOTETIMER
-	hasOrb = false
 
 func _physics_process(delta: float) -> void:
 	var inputaxis = Input.get_axis("Left","Right")
@@ -123,13 +122,12 @@ func _input(event: InputEvent) -> void:
 			
 	if event.is_action_pressed("Reset") && canReset:
 		get_tree().reload_current_scene()
-	
-		isDead = false
 
 func Jump(delta):
 	jumpCount = 1 
 	canJump = false
 	linear_velocity.y = JUMPSPEED * delta
+	$AudioStreamPlayer.play( )
 
 
 func push():
@@ -175,8 +173,6 @@ func kill():
 	get_node("Blood").emitting = true
 	get_node("Respawn").start()
 	get_node("GIC Player").visible = false
-	hasOrb = false
-	isDead = true	
 
 
 func _on_respawn_timeout() -> void:

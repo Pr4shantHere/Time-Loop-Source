@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkge6ci8anka"]
+[gd_scene load_steps=14 format=3 uid="uid://bkge6ci8anka"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bhy5bq5oyhrlv" path="res://nofriction.tres" id="1_18etf"]
 [ext_resource type="Script" uid="uid://diq4lfhlewq6d" path="res://scripts/character.gd" id="1_oqwy7"]
 [ext_resource type="Texture2D" uid="uid://dfujlsnamjvcu" path="res://BEST COLOR PALETTE (Blurred).png" id="3_8cgb6"]
 [ext_resource type="PackedScene" uid="uid://beos131p327ne" path="res://scenes/gic_player.tscn" id="4_x1pyt"]
 [ext_resource type="PackedScene" uid="uid://hfnnqmhrfnao" path="res://scenes/red_orb.tscn" id="5_3ktta"]
+[ext_resource type="AudioStream" uid="uid://dlit5w2f28v6f" path="res://audios/Jump.mp3" id="6_8kjla"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oqwy7"]
 
@@ -130,6 +131,10 @@ visible = false
 isResetable = false
 isRed = false
 allowFollow = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_8kjla")
+volume_db = 5.0
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="Respawn" to="." method="_on_respawn_timeout"]
