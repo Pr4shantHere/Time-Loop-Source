@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkwh0lkm5awh8"]
+
+[ext_resource type="Script" uid="uid://dsj73ek31x88m" path="res://scripts/changescene.gd" id="1_kv847"]
+[ext_resource type="ArrayMesh" uid="uid://cy05vnyj5om5x" path="res://assets/Door Diamond.obj" id="2_uh4h5"]
+[ext_resource type="Material" uid="uid://brluoqwh1u6ob" path="res://mat_coloronly_AllInOne.tres" id="3_xlt2i"]
+[ext_resource type="PackedScene" uid="uid://btmljx2xnnhsu" path="res://scenes/blue_orb.tscn" id="4_sb2mp"]
+[ext_resource type="Script" uid="uid://0p678jxmnhno" path="res://scripts/orb.gd" id="5_uh4h5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_igygv"]
+size = Vector3(4.58887, 9.50873, 7.3089)
+
+[node name="Door Diamond" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+script = ExtResource("1_kv847")
+sceneToLoad = "start"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+mesh = ExtResource("2_uh4h5")
+surface_material_override/0 = ExtResource("3_xlt2i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.571228, 2.8732)
+shape = SubResource("BoxShape3D_igygv")
+
+[node name="Blue Orb" parent="." instance=ExtResource("4_sb2mp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
+script = ExtResource("5_uh4h5")
+isRed = false
+isDiamond = true
+allowFollow = false

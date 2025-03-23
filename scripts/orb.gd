@@ -5,18 +5,36 @@ var timer
 @export var isPushable : bool = false
 @export var isResetable : bool = true
 
+@export var isRed : bool = true
+@export var isBlue : bool = false
+@export var isOrange : bool = false
+@export var isDiamond : bool = false
+
+@export var allowFollow : bool = true
 
 func _ready() -> void:
 	print(get_owner().name)
 	pos_start = position
+	if isRed:
+		$"Meshes for Anim/Area3D/MeshInstance3D".mesh = load("res://assets/Orbs/Red Orb.obj")
+	elif isBlue:
+		$"Meshes for Anim/Area3D/MeshInstance3D".mesh = load("res://assets/Orbs/Blue Orb.obj")
+	elif isOrange:
+		$"Meshes for Anim/Area3D/MeshInstance3D".mesh = load("res://assets/Orbs/Orange Orb.obj")
+	elif isDiamond:
+		$"Meshes for Anim/Area3D/MeshInstance3D".mesh = load("res://assets/Orbs/Diamond Orb.obj")
+		
 
 func _process(delta: float) -> void:
-	if get_owner().get_node("Character").hasOrb == true:
-		followw(delta)
+	if allowFollow:
+		if get_owner().get_node("Character").hasOrb:
+			followw(delta)
 		
-	if get_owner().reset == true && isResetable:
-		position = pos_start
-		get_owner().get_node("Character").hasOrb = false
+		if get_owner().reset == true && isResetable:
+			position = pos_start
+			get_owner().get_node("Character").hasOrb = false
+		
+	
  	
 func followw(d):
 	position.x = lerpf(position.x, get_owner().get_node("Character").get_node("FollowTarget").global_position.x, .06)
