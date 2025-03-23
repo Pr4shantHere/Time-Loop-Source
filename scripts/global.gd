@@ -2,6 +2,9 @@ extends Node3D
 
 var reset : bool = false
 
+func _ready() -> void:
+	AudioPlayer.play_music_level()
+
 func _process(delta: float) -> void:
 	if reset == true:
 		$LoopTimer.start()

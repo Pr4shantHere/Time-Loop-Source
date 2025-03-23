@@ -7,6 +7,12 @@ var mainscene = "res://scenes/isthismainmenu.tscn"
 var camera
 var canReallyChange
 
+@export var isRed : bool = true
+@export var isBlue : bool = false
+@export var isOrange : bool = false
+@export var isDiamond : bool = false
+
+
 func _ready() -> void:
 	scene = "res://scenes/Levels/"+sceneToLoad+".tscn"
 	camera = get_owner().get_node("Camera")
