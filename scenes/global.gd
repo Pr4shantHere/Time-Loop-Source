@@ -14,9 +14,3 @@ func _ready() -> void:
 	blue = false
 	diamond = false
 	orange = false
-	
-	
-func _process(delta: float) -> void:
-	pass
-
-	

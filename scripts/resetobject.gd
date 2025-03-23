@@ -8,6 +8,7 @@ var timer
 
 func _ready() -> void:
 	pos_start = position
+	get_owner().get_node("Character").hasOrb = false
 
 func _physics_process(delta: float) -> void:
 	if get_owner().reset == true && isResetable:

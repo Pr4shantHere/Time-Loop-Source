@@ -21,8 +21,7 @@ shape = SubResource("BoxShape3D_xf4c5")
 
 [node name="Red Orb" parent="." instance=ExtResource("3_86410")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.971, 0)
-isResetable = false
-allowFollow = false
+script = null
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

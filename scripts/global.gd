@@ -4,6 +4,7 @@ var reset : bool = false
 
 func _ready() -> void:
 	AudioPlayer.play_music_level()
+	get_node("Character").hasOrb = false
 
 func _process(delta: float) -> void:
 	if reset == true:
@@ -24,6 +25,7 @@ func _process(delta: float) -> void:
 	if $LoopTimer.time_left > 0.002 && $LoopTimer.time_left < 0.01:
 		get_node("Camera").reset()
 		reset =true
+		get_node("Character").hasOrb = false
  
 #func _on_loop_timer_timeout() -> void:
 	#reset = true

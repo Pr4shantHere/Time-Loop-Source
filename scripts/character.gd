@@ -27,6 +27,7 @@ func _ready() -> void:
 	dontpush()
 	isGrounded = true
 	$CoyoteTimer.wait_time = COYOTETIMER
+	hasOrb = false
 
 func _physics_process(delta: float) -> void:
 	var inputaxis = Input.get_axis("Left","Right")
@@ -114,7 +115,6 @@ func _physics_process(delta: float) -> void:
 
 	get_owner().get_node("Blood").position = position
 	get_owner().get_node("Blood").visible = false
-
 func _input(event: InputEvent) -> void:
 	if jumpInputCheck == true or canCoyoteJump == true:
 		if event.is_action_pressed("Jump"):
@@ -166,8 +166,6 @@ func dontpush():
 
 func _on_coyote_timer_timeout() -> void:
 	canCoyoteJump = false
-
-var isDead = false
 
 func kill():
 	get_node("Blood").emitting = true
