@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://2v6vel471gio"]
+[gd_scene load_steps=32 format=3 uid="uid://2v6vel471gio"]
 
 [ext_resource type="PackedScene" uid="uid://c70cn6y48w07a" path="res://scenes/root.tscn" id="1_tmcrc"]
 [ext_resource type="MeshLibrary" uid="uid://6gm5w8lhpv0m" path="res://tiles.tres" id="2_gay5b"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dfujlsnamjvcu" path="res://BEST COLOR PALETTE (Blurred).png" id="16_vbfwq"]
 [ext_resource type="ArrayMesh" uid="uid://cqvbebdm3nmop" path="res://assets/Orbs/Blue Orb.obj" id="17_340yb"]
 [ext_resource type="ArrayMesh" uid="uid://bw7nrh8olw246" path="res://assets/Orbs/Diamond Orb.obj" id="18_uoscm"]
+[ext_resource type="FontFile" uid="uid://j62xhpm2tnhp" path="res://scenes/marspolice.ttf" id="19_jwxdg"]
 
 [sub_resource type="Environment" id="Environment_c13wt"]
 background_mode = 1
@@ -288,3 +289,22 @@ surface_material_override/0 = SubResource("StandardMaterial3D_yar1a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HOLDER/Diamond2/Meshes for Anim/Area3D" index="2"]
 shape = SubResource("BoxShape3D_f23n8")
+
+[node name="Credits" type="Node3D" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.80028, 0)
+
+[node name="THE" type="Label3D" parent="Credits" index="0"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -1, 0.348186, -2.45)
+text = "THE"
+font = ExtResource("19_jwxdg")
+
+[node name="END" type="Label3D" parent="Credits" index="1"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 1, 0.348186, -2.45)
+text = "END"
+font = ExtResource("19_jwxdg")
+
+[node name="Thanks" type="Label3D" parent="Credits" index="2"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -0.832, -2.68)
+modulate = Color(0.631715, 0.631715, 0.631715, 1)
+text = "Thanks For Playing!!"
+font = ExtResource("19_jwxdg")

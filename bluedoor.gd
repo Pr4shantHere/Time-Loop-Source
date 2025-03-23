@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 	if canChange && Input.is_action_pressed("Interact"):
 		camera.get_node("AnimationPlayer").play("IN")
 		camera.get_node("WAITBEFORESWITCHING").start()
+		Global.blue = false
 
 
 	if camera.canChange && realscene != "":

@@ -20,3 +20,13 @@ func _process(delta: float) -> void:
 
 func _on_waitbeforeswitching_timeout() -> void:
 	canChange = true
+
+func reset():
+	$Undo.visible = true	
+	$AnimationPlayer2.play("reset")
+	
+	await  $AnimationPlayer2.animation_finished
+	$Undo.visible = false
+	
+func rollcredits():
+	pass

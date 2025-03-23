@@ -14,4 +14,7 @@ func _process(delta: float) -> void:
 		$Diamond2.visible = true
 
 	if Global.red && Global.blue && Global.orange && Global.diamond:
-		pass
+		$"../Credits".visible = true
+	else:
+		$"../Credits".visible = false
+		

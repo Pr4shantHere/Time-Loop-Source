@@ -127,7 +127,7 @@ func Jump(delta):
 	jumpCount = 1 
 	canJump = false
 	linear_velocity.y = JUMPSPEED * delta
-	$AudioStreamPlayer.play( )
+	$AudioStreamPlayer.play()
 
 
 func push():
