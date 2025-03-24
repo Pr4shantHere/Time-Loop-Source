@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://djuxf14snihcl"]
+[gd_scene load_steps=26 format=3 uid="uid://djuxf14snihcl"]
 
 [ext_resource type="PackedScene" uid="uid://c70cn6y48w07a" path="res://scenes/root.tscn" id="1_n3jbe"]
 [ext_resource type="PackedScene" uid="uid://c53f7drecsxyo" path="res://scenes/door_red.tscn" id="2_iij2q"]
@@ -10,6 +10,7 @@
 [ext_resource type="PhysicsMaterial" uid="uid://bhy5bq5oyhrlv" path="res://nofriction.tres" id="7_iij2q"]
 [ext_resource type="PackedScene" uid="uid://c5vdidva7u6d1" path="res://scenes/camera.tscn" id="8_m7gjt"]
 [ext_resource type="PackedScene" uid="uid://hfnnqmhrfnao" path="res://scenes/red_orb.tscn" id="9_286rb"]
+[ext_resource type="AudioStream" uid="uid://b40fsdym2l1yp" path="res://audios/clock.mp3" id="11_lje3y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lje3y"]
 size = Vector3(6.1416, 30.7999, 2.12402)
@@ -401,3 +402,8 @@ scale_amount_min = 0.4
 scale_amount_max = 0.8
 scale_amount_curve = SubResource("Curve_yhn3i")
 color = Color(1, 0.06, 0.06, 1)
+
+[node name="Clocksfx" type="AudioStreamPlayer" parent="." index="8"]
+stream = ExtResource("11_lje3y")
+volume_db = 1.0
+autoplay = true

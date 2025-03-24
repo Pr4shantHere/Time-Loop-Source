@@ -13,10 +13,14 @@ func _process(delta: float) -> void:
 	
 	if $LoopTimer.time_left > 5:
 		$TimerModel.get_node("BOB").speed_scale = 1
+		#$Clocksfx.playing = false
 	elif $LoopTimer.time_left <= 5 and $LoopTimer.time_left > 2:
 		$TimerModel.get_node("BOB").speed_scale = lerpf($TimerModel.get_node("BOB").speed_scale, 3, 1)
+		#$Clocksfx.playing = true
+		#$Clocksfx.pitch_scale = 1.5
 	elif $LoopTimer.time_left <= 2 and $LoopTimer.time_left > 0.5:
 		$TimerModel.get_node("BOB").speed_scale = lerpf($TimerModel.get_node("BOB").speed_scale, 5, 1)
+		#$#Clocksfx.pitch_scale = 1.5
 	else:
 		$TimerModel.get_node("BOB").speed_scale = lerpf($TimerModel.get_node("BOB").speed_scale, 7, 1)
 
