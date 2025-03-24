@@ -438,4 +438,3 @@ isOrange = true
 [node name="Clocksfx" type="AudioStreamPlayer" parent="." index="8"]
 stream = ExtResource("11_4x54i")
 volume_db = 1.0
-autoplay = true

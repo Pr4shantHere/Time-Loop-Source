@@ -553,4 +553,3 @@ isDiamond = true
 [node name="Clocksfx" type="AudioStreamPlayer" parent="." index="8"]
 stream = ExtResource("15_7f5ga")
 volume_db = 1.0
-autoplay = true

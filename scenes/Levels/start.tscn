@@ -620,4 +620,3 @@ font = ExtResource("19_jwxdg")
 [node name="Clocksfx" type="AudioStreamPlayer" parent="." index="9"]
 stream = ExtResource("21_vbfwq")
 volume_db = 1.0
-autoplay = true

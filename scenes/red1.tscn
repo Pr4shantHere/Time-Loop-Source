@@ -406,4 +406,3 @@ color = Color(1, 0.06, 0.06, 1)
 [node name="Clocksfx" type="AudioStreamPlayer" parent="." index="8"]
 stream = ExtResource("11_lje3y")
 volume_db = 1.0
-autoplay = true
