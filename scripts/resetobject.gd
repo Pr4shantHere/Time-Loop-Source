@@ -20,3 +20,4 @@ func _physics_process(delta: float) -> void:
 			axis_lock_linear_y = false
 			linear_velocity.x = 0
 			
+	position.z = 1 # to make sure they are appropriately placeed on the z axis

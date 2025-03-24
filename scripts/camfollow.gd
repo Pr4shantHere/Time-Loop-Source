@@ -1,6 +1,10 @@
 extends Camera3D
 
 var canChange
+var showUndo = false
+
+func _ready() -> void:
+	$hideundo.start()
 
 func _process(delta: float) -> void:
 	position.y = lerp(position.y, get_owner().get_node("Character").position.y + 4.877,0.12)
@@ -17,6 +21,9 @@ func _process(delta: float) -> void:
 	get_owner().get_node("TimerModel").position.x = posx
 	get_owner().get_node("TimerModel").position.y = posy
 
+	if !showUndo:
+		$Undo.visible = false
+		
 
 func _on_waitbeforeswitching_timeout() -> void:
 	canChange = true
@@ -30,3 +37,7 @@ func reset():
 	
 func rollcredits():
 	pass
+
+
+func _on_hideundo_timeout() -> void:
+	showUndo = true

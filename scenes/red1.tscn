@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://djuxf14snihcl"]
+[gd_scene load_steps=25 format=3 uid="uid://djuxf14snihcl"]
 
 [ext_resource type="PackedScene" uid="uid://c70cn6y48w07a" path="res://scenes/root.tscn" id="1_n3jbe"]
 [ext_resource type="PackedScene" uid="uid://c53f7drecsxyo" path="res://scenes/door_red.tscn" id="2_iij2q"]
@@ -7,8 +7,24 @@
 [ext_resource type="PackedScene" uid="uid://dfwrtg20nm80v" path="res://scenes/crate.tscn" id="5_gduad"]
 [ext_resource type="PackedScene" uid="uid://olo0q7pcy4vi" path="res://scenes/spikes.tscn" id="6_hqab0"]
 [ext_resource type="PackedScene" uid="uid://bkge6ci8anka" path="res://scripts/character.tscn" id="7_1dwj8"]
+[ext_resource type="PhysicsMaterial" uid="uid://bhy5bq5oyhrlv" path="res://nofriction.tres" id="7_iij2q"]
 [ext_resource type="PackedScene" uid="uid://c5vdidva7u6d1" path="res://scenes/camera.tscn" id="8_m7gjt"]
 [ext_resource type="PackedScene" uid="uid://hfnnqmhrfnao" path="res://scenes/red_orb.tscn" id="9_286rb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lje3y"]
+size = Vector3(6.1416, 30.7999, 2.12402)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iij2q"]
+size = Vector3(10.7725, 6.11438, 2.12402)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ov5e7"]
+size = Vector3(10.2092, 8.10141, 2.12402)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gduad"]
+size = Vector3(12.2238, 8.10141, 2.12402)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hqab0"]
+size = Vector3(12.2238, 8.10141, 2.12402)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lje3y"]
 
@@ -87,19 +103,19 @@ data = {
 }
 
 [node name="Crate" parent="Level" index="2" instance=ExtResource("5_gduad")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.20923, 5.27641, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.20923, 5.27641, 1)
 
 [node name="Crate3" parent="Level" index="3" instance=ExtResource("5_gduad")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.9929, 7.24401, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.799, 7.24401, 1)
 
 [node name="Crate4" parent="Level" index="4" instance=ExtResource("5_gduad")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.9929, 9.36696, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.799, 9.36696, 1)
 
 [node name="Crate5" parent="Level" index="5" instance=ExtResource("5_gduad")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.9929, 11.6452, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.799, 11.6452, 1)
 
 [node name="Crate2" parent="Level" index="6" instance=ExtResource("5_gduad")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.2073, 5.27641, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.2073, 5.27641, 1)
 
 [node name="spikes" parent="Level" index="7" instance=ExtResource("6_hqab0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9164, 1.34879, 1.00468)
@@ -127,6 +143,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9776, 1.34879, 1.00468)
 
 [node name="spikes9" parent="Level" index="15" instance=ExtResource("6_hqab0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9555, 1.34879, 1.00468)
+
+[node name="Collision fixes" type="StaticBody3D" parent="Level" index="16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.02812)
+physics_material_override = ExtResource("7_iij2q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Collision fixes" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.90506, 6.58395, 0)
+shape = SubResource("BoxShape3D_lje3y")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Level/Collision fixes" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.905057, -0.958912, 0)
+shape = SubResource("BoxShape3D_iij2q")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Level/Collision fixes" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.97631, 0.0346031, 0)
+shape = SubResource("BoxShape3D_ov5e7")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Level/Collision fixes" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.9783, 0.0346031, 0)
+shape = SubResource("BoxShape3D_ov5e7")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Level/Collision fixes" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.099, 2.04879, 0)
+shape = SubResource("BoxShape3D_gduad")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Level/Collision fixes" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.0663, 9.52477, 0)
+shape = SubResource("BoxShape3D_hqab0")
 
 [node name="Character" parent="." index="2" instance=ExtResource("7_1dwj8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.11026, 0.866412)

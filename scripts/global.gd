@@ -22,10 +22,13 @@ func _process(delta: float) -> void:
 
 	$TimerModel.get_node("stopwatch").get_node("Hand").play("hand")
 
-	if $LoopTimer.time_left > 0.002 && $LoopTimer.time_left < 0.01:
-		get_node("Camera").reset()
-		reset =true
-		get_node("Character").hasOrb = false
+	#if $LoopTimer.time_left > 0.002 && $LoopTimer.time_left < 0.01:
+		#get_node("Camera").reset()
+		#reset =true
+		#get_node("Character").hasOrb = false
  
-#func _on_loop_timer_timeout() -> void:
-	#reset = true
+func _on_loop_timer_timeout() -> void:
+	reset = true
+	get_node("Character").hasOrb = false
+	get_node("Camera").reset()
+	

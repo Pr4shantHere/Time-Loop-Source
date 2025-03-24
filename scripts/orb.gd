@@ -30,19 +30,39 @@ func _process(delta: float) -> void:
 		if get_owner().get_node("Character").hasOrb == true:
 			followw(delta)
 			
-			if isRed:
-				Global.red = true
-			if isBlue:
-				Global.blue = true
-			if isOrange:
-				Global.orange = true
-			if isDiamond:
-				Global.diamond = true
-
+			if get_owner().get_node("Character").died == false:
+				if isRed:
+					Global.red = true
+				
+				if isBlue:
+					Global.blue = true
+				if isOrange:
+					Global.orange = true
+				if isDiamond:
+					Global.diamond = true
+			if get_owner().get_node("Character").died == true:
+				if isRed:
+					Global.red = false
+				
+				if isBlue:
+					Global.blue = false
+				if isOrange:
+					Global.orange = false
+				if isDiamond:
+					Global.diamond = false
 		
 		if get_owner().reset == true && isResetable:
 			position = pos_start
 			get_owner().get_node("Character").hasOrb = false
+			
+			if isRed:
+				Global.red = false
+			if isBlue:
+				Global.blue = false
+			if isOrange:
+				Global.orange = false
+			if isDiamond:
+				Global.diamond = false
 
 	
 func followw(d):

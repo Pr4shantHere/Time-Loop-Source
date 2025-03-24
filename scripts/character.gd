@@ -19,7 +19,7 @@ var jumpCount : int
 var canCoyoteJump : bool
 var vel
 
-
+var died : bool
 
 func _ready() -> void:
 	jumpCount = 0
@@ -28,6 +28,7 @@ func _ready() -> void:
 	isGrounded = true
 	$CoyoteTimer.wait_time = COYOTETIMER
 	hasOrb = false
+	died = false
 
 func _physics_process(delta: float) -> void:
 	var inputaxis = Input.get_axis("Left","Right")
@@ -171,6 +172,8 @@ func kill():
 	get_node("Blood").emitting = true
 	get_node("Respawn").start()
 	get_node("GIC Player").visible = false
+	hasOrb = false
+	died = true
 
 
 func _on_respawn_timeout() -> void:

@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://ci2sa2ey80w3s" path="res://audios/Die.mp3" id="6_w4mxr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kd5gq"]
-size = Vector3(1.5625, 0.489532, 1.79688)
+size = Vector3(1.5625, 0.603794, 1.79688)
 
 [node name="spikes" type="StaticBody3D"]
 script = ExtResource("1_0vi4p")
@@ -29,7 +29,7 @@ skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("4_0vi4p")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.731216, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.788347, 0)
 shape = SubResource("BoxShape3D_kd5gq")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
